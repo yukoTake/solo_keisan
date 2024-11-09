@@ -1,11 +1,24 @@
-import { request } from "express";
-
 console.log("==test=====start=");
-import { expect } from "chai";
+// import { request } from "express";
+// import { expect } from "chai";
+//
+// describe("起動確認_result_summery_test.mjs", () => {
+//   it("起動OK", async () => {
+//     expect(11).to.equal(11);
+//   });
+// });
+//
+// describe("all", () => {
+//   it("should return an array of result_summery", async () => {
+//     const resData = await request.get("/result_summary/1");
+//     console.log("resData;", resData);
+//     expect(resData).to.have.status(200);
+//     expect(resData).to.be.an("array");
+//   });
+// });
 
-// import db from "../index";
-// const customerModel = await import "../handlers/resultSummery"
-// const CUSTOMER_TABLE = customerModel.CUSTOMER_TABLE;
+import axios from "axios";
+import { expect } from "chai";
 
 describe("起動確認_result_summery_test.mjs", () => {
   it("起動OK", async () => {
@@ -15,10 +28,12 @@ describe("起動確認_result_summery_test.mjs", () => {
 
 describe("all", () => {
   it("should return an array of result_summery", async () => {
-    const resultSummery = await request.get("/result_summery");
-    console.log("resultSummery;", resultSummery);
-    expect(11).to.equal(11);
+    const url = "http://localhost:7000/result_summary/1";
+    const resData = await axios.get(url);
+
+    // console.log(resData);
+    expect(resData.status).to.equal(200);
+    expect(resData.data).to.be.an("array");
   });
 });
-
 console.log("==test=====end=");
