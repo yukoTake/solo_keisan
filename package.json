@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "clear && mocha --require esm test/*.mjs",
+    "test_moto": "clear && mocha --require test/setup.js",
     "db:migrate": "npx knex migrate:latest --knexfile src/db/knexfile.js",
     "db:migrate-make": "npx knex migrate:make --knexfile src/db/knexfile.js",
     "db:seed": "npx knex seed:run --knexfile src/db/knexfile.js",
     "db:seed-make": "npx knex seed:make --knexfile src/db/knexfile.js",
-    "db:reset": "npx knex migrate:rollback --all && knex migrate:latest && knex seed:run",
+    "___db:reset": "npx knex migrate:rollback --all && knex migrate:latest && knex seed:run",
     "build": "npm install && npm run db:migrate-make && npm run db:seed",
-    "db:mi-se":  "db:migrate && npm run db:seed",
+    "___db:mi-se": "db:migrate && npm run db:seed",
     "start": "nodemon ./src/index.js"
   },
   "keywords": [],
@@ -21,9 +23,15 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "knex": "^3.1.0",
-    "pg": "^8.13.1"
+    "pg": "^8.13.1",
+    "require": "^2.4.20"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "chai": "^5.1.2",
+    "chai-http": "^5.1.1",
+    "eslint": "^9.14.0",
+    "mocha": "^10.8.2",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3"
   }
 }
