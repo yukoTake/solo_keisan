@@ -13,7 +13,7 @@
     "db:seed-make": "npx knex seed:make --knexfile src/db/knexfile.js",
     "___db:reset": "npx knex migrate:rollback --all && knex migrate:latest && knex seed:run",
     "build": "npm install && npm run db:migrate-make && npm run db:seed",
-    "___db:mi-se": "db:migrate && npm run db:seed",
+    "___db:mi-se": "npm run db:migrate && npm run db:seed",
     "start": "nodemon ./src/index.js"
   },
   "keywords": [],
