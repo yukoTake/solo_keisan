@@ -16,6 +16,7 @@ exports.up = async (knex) => {
     table.integer("arg2_decimal");
     table.specificType("arg2_list", "decimal[]");
     table.string("operator").notNullable();
+    table.integer("res_min").notNullable();
     table.integer("res_max").notNullable();
   });
 };

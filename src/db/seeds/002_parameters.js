@@ -19,6 +19,7 @@ exports.seed = async function (knex) {
       arg2_decimal: 0,
       arg2_list: null,
       operator: "+",
+      res_min: 0,
       res_max: 20,
     },
     {
@@ -33,6 +34,7 @@ exports.seed = async function (knex) {
       arg2_decimal: 0,
       arg2_list: null,
       operator: "+",
+      res_min: 0,
       res_max: 100,
     },
   ]);

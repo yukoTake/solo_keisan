@@ -16,8 +16,8 @@ exports.up = async (knex) => {
     table.decimal("arg2").notNullable();
     table.string("operator").notNullable();
     table.decimal("correct").notNullable();
-    table.decimal("answered").notNullable();
-    table.boolean("isCorrectly").notNullable();
+    table.decimal("answered");
+    table.boolean("isCorrectly");
   });
 };
 

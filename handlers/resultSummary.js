@@ -1,14 +1,54 @@
-// const db = require("../src/db/index");
+const axios = require("axios");
 const table = "result_summary";
 
 module.exports = {
   table,
-  async all(knex, userID) {
-    console.log("---resultSummary.js--all--start-");
+  // async findUser(knex, id) {
+  //   //未使用ーーーーー
+  //   console.log("---resultSummary.js--findUser--start-");
+  //
+  //   return await knex
+  //     .select("T.*")
+  //     .from(`${table} as T`)
+  //     .join("parameters as P", "P.id", "T.parameter_id")
+  //     .where("P.user_id", id);
+  // },
+
+  async findSummary(knex, id) {
+    console.log("---resultSummary.js--findSummery--start-");
+
     return await knex
-      .select("S.*")
-      .from(`${table} as S`)
-      .join("parameters as P", "P.id", "S.parameter_id")
-      .where("P.user_id", userID);
+      .select(
+        "T.*",
+        "P.user_id",
+        "P.arg1_min",
+        "P.arg1_max",
+        "P.arg1_list",
+        "P.arg1_decimal",
+        "P.arg2_min",
+        "P.arg2_max",
+        "P.arg2_list",
+        "P.arg1_decimal",
+        "P.operator",
+        "P.res_min",
+        "P.res_max",
+      )
+      .from(`${table} as T`)
+      .join("parameters as P", "P.id", "T.parameter_id")
+      .where("T.id", id);
+  },
+
+  async new(knex, { parameter_id }) {
+    console.log("---resultSummary.js--new--start-");
+    let newId = await knex(table).max("id").first();
+    newId = newId.max + 1;
+    // console.log(newId);
+    return await knex(table)
+      .insert({
+        parameter_id: parameter_id,
+        date: new Date(),
+        id: newId,
+      })
+      .returning("*");
   },
 };
