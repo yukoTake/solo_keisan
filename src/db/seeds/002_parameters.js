@@ -21,7 +21,7 @@ exports.seed = async function (knex) {
       operator: "+",
       res_min: 0,
       res_max: 20,
-      add_date: new Date(),
+      timestamp: new Date(),
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ exports.seed = async function (knex) {
       operator: "+",
       res_min: 0,
       res_max: 100,
-      add_date: new Date(),
+      timestamp: new Date(),
     },
   ]);
 };

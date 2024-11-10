@@ -119,6 +119,7 @@ for (let i = 0; i <= 2; i++) {
       correct: value.correct,
       answered: value.answered,
       isCorrectly: value.isCorrectly,
+      timestamp: new Date(),
     });
   });
 }

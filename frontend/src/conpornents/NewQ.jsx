@@ -34,7 +34,6 @@ export function NewQ() {
         既存
       </p>
       {paramClass === "new" ? <ParamNew /> : <ParamSelect />}
-      <p>{paramClass}</p>
     </>
   );
 }

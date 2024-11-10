@@ -18,6 +18,7 @@ exports.up = async (knex) => {
     table.decimal("correct").notNullable();
     table.decimal("answered");
     table.boolean("isCorrectly");
+    table.timestamp("timestamp").notNullable();
   });
 };
 

@@ -12,7 +12,7 @@ exports.up = async (knex) => {
       .onDelete("CASCADE");
     table.integer("time");
     table.integer("miss_count");
-    table.date("date").notNullable();
+    table.timestamp("timestamp").notNullable();
   });
 };
 
