@@ -1,16 +1,26 @@
 const express = require("express");
 const db = require("./src/db/");
+const cors = require("cors");
 const readResultSummery = require("./handlers/resultSummary");
 const readResultDetail = require("./handlers/resultDetail");
 const readParameters = require("./handlers/parameters");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 // app.use("/", express.static(__dirname + "/public"));
 
 //users------------------------------------------
 
 //parameters------------------------------------------
+app.get("/parameters/user/:id", async (req, res) => {
+  console.log("--index.js--app.get--/parameters/user--start-");
+  const id = req.params.id;
+  const resData = await readParameters.findUser(db, id);
+  // console.log("resData;", resData);
+  res.status(200).json(resData);
+});
+
 app.get("/parameters/:id", async (req, res) => {
   console.log("--index.js--app.get--/parameters--start-");
   const id = req.params.id;

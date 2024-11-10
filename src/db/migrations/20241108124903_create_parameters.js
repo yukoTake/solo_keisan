@@ -18,6 +18,7 @@ exports.up = async (knex) => {
     table.string("operator").notNullable();
     table.integer("res_min").notNullable();
     table.integer("res_max").notNullable();
+    table.date("add_date").notNullable();
   });
 };
 
