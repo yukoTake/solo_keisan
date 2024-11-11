@@ -3,10 +3,12 @@ import axios from "axios";
 
 export function TestMain({ param }) {
   // const [selectedParam, setSelectedParam] = useContext(ParamContext);
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([1, 2]);
+  const [questionNo, setQuestionNo] = useState(1);
+  const [isDoTest, setIsDoTest] = useState(false);
   console.log(param);
 
-  useEffect(() => {
+  const try_question = () => {
     const apiUrl = "http://localhost:7000/result_detail";
     axios
       .post(apiUrl, {
@@ -14,40 +16,34 @@ export function TestMain({ param }) {
         parameter_id: param.state.id,
       })
       .then((res) => {
-        console.log("kakunin_status:", res.status);
-        console.log("kakunin_data:", res.data);
-        console.log("++end++");
-      });
+        console.log("res.data", res.data);
 
-    // const apiUrl = "http://localhost:7000/result_detail";
-    // axios
-    //   .post(apiUrl, {
-    //     user_id: param.state.user_id,
-    //     parameter_id: param.state.id,
-    //   })
-    //   //.then((res) => {
-    //   // console.log(param.state.user_id, param.state.id);
-    //   // fetch("http://localhost:7000/result_detail", {
-    //   //   method: "POST",
-    //   //   body: JSON.stringify({
-    //   //     user_id: param.state.user_id,
-    //   //     parameter_id: param.state.id,
-    //   //   }),
-    //   // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     setQuestions(res);
-    //     console.log(questions);
-    //   });
-  }, []);
+        setQuestions(res.data);
+        console.log("questions", questions);
+      });
+  };
 
   return (
     <>
-      <section>
-        <div>arg1</div>
-        <div>+</div>
-        <div>arg2</div>
-      </section>
+      {isDoTest ? (
+        <>
+          <div>第{questions[questionNo].question_no}問</div>
+          <section>
+            <div>{questions[questionNo].arg1}</div>
+            <div>{questions[questionNo].operator}</div>
+            <div>{questions[questionNo].arg2}</div>
+          </section>
+        </>
+      ) : (
+        <button
+          onClick={() => {
+            try_question();
+            setIsDoTest(true);
+          }}
+        >
+          START
+        </button>
+      )}
       <section>
         <button>1</button>
         <button>2</button>
