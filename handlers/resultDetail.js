@@ -29,8 +29,10 @@ module.exports = {
     [param] = param.data;
     console.log("=param===", param);
 
-    const getNum = (min, max, list) => {
+    const getNum = (min, max, list, decimal) => {
       if (list === null) {
+        // let num = min + Math.floor(Math.random() * (max - min + 1));
+
         return min + Math.floor(Math.random() * (max - min + 1));
       } else {
         return list[Math.floor(Math.random() * list.length)];
@@ -57,8 +59,18 @@ module.exports = {
       let arg2;
       let correct;
       while (!isOK) {
-        arg1 = getNum(param.arg1_min, param.arg1_max, param.arg1_list);
-        arg2 = getNum(param.arg2_min, param.arg2_max, param.arg2_list);
+        arg1 = getNum(
+          param.arg1_min,
+          param.arg1_max,
+          param.arg1_list,
+          param.arg1_decimal,
+        );
+        arg2 = getNum(
+          param.arg2_min,
+          param.arg2_max,
+          param.arg2_list,
+          param.arg2_decimal,
+        );
         correct = getCorrect(arg1, arg2, param.operator);
         if (param.res_min <= correct && correct <= param.res_max) {
           isOK = true;
@@ -75,6 +87,8 @@ module.exports = {
       });
     }
     console.log("-questionArr;", questionArr);
-    return await knex(table).insert(questionArr).returning("*");
+    return await knex(table)
+      .insert(questionArr)
+      .returning("*", "param.arg1_decimal", "param.arg2_decimal");
   },
 };
