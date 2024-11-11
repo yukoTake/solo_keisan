@@ -8,7 +8,10 @@ export function NewQ() {
   // const [selectedParam, setSelectedParam] = useState({ id: 0 });
   return (
     <>
-      <h1>新しい問題にチャレンジしよう</h1>
+      <header>
+        <h1>新しい問題にチャレンジしよう</h1>
+        <a href="/">HOME</a>
+      </header>
       <p>
         パラメータを設定してね！
         <br />

@@ -1,13 +1,40 @@
 import "./TestNavbar.css";
+import { useContext, useEffect, useState } from "react";
+import {
+  CorrectCountContext,
+  IsDoTestContext,
+  QuestionNoContext,
+  QuestionsContext,
+} from "./Test.jsx";
 
 export function TestNavbar() {
+  const { questions, setQuestions } = useContext(QuestionsContext);
+  const { questionNo, setQuestionNo } = useContext(QuestionNoContext);
+  const { isDoTest, setIsDoTest } = useContext(IsDoTestContext);
+  const { correctCount, setCorrectCount } = useContext(CorrectCountContext);
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    let interval;
+    if (isDoTest === "start") {
+      setTime(0);
+      interval = setInterval(() => {
+        setTime((timeCount) => timeCount + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isDoTest]);
+
   return (
     <>
       <header id="test_nav_bar">
         <div>テスト</div>
-        <div>のこり⚫︎問</div>
-        <div>結果：正解数⚫︎／問題数⚫︎︎</div>
-        <div>経過時間：⚫︎秒</div>
+        <div>のこり{questions.length - questionNo}︎問</div>
+        <div>
+          結果：正解数{correctCount}／問題数{questionNo}︎
+        </div>
+        <div>経過時間：{time}︎秒</div>
+        <a href="/">HOME</a>
       </header>
     </>
   );

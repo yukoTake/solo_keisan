@@ -87,8 +87,19 @@ module.exports = {
       });
     }
     console.log("-questionArr;", questionArr);
+    return await knex(table).insert(questionArr).returning("*");
+  },
+
+  //回答登録
+  async edit(knex, { summary_id, question_no, answered, isCorrectly }) {
+    console.log(`---${table}--edit--start-`);
+
     return await knex(table)
-      .insert(questionArr)
-      .returning("*", "param.arg1_decimal", "param.arg2_decimal");
+      .update({ answered: answered, isCorrectly: isCorrectly })
+      .where({
+        summary_id: Number(summary_id),
+        question_no: Number(question_no),
+      })
+      .returning("*");
   },
 };
