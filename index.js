@@ -42,7 +42,8 @@ app.post("/result_summary", async (req, res) => {
   console.log("--index.js--app.post--/result_summary--start-");
   const params = req.body; //user_id, parameter_id を取得
   const resData = await readResultSummery.new(db, params);
-  // console.log("resData;", resData);
+  console.log("params;", params);
+  console.log("resData;", resData);
   res.status(201).json(resData);
 });
 
@@ -58,8 +59,9 @@ app.post("/result_summary", async (req, res) => {
 app.post("/result_detail", async (req, res) => {
   console.log("--index.js--app.post--/result_detail/--start-");
   const params = req.body;
+  console.log("params;", params);
   const resData = await readResultDetail.new(db, params);
-  // console.log("resData;", resData);
+  console.log("resData;", resData);
   res.status(201).json(resData);
 });
 

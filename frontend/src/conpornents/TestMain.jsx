@@ -1,22 +1,45 @@
-import { useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-// import { ParamContext } from "./NewQ.jsx";
-// import { ParamContext, UserContext } from "../App.jsx";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export function TestMain({ param }) {
   // const [selectedParam, setSelectedParam] = useContext(ParamContext);
+  const [questions, setQuestions] = useState([]);
   console.log(param);
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:7000/parameters/${user.id}`)
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       setParamList(res);
-  //       const [lastRes] = res.slice(-1);
-  //       console.log(lastRes);
-  //       setSelectedParam(lastRes);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const apiUrl = "http://localhost:7000/result_detail";
+    axios
+      .post(apiUrl, {
+        user_id: param.state.user_id,
+        parameter_id: param.state.id,
+      })
+      .then((res) => {
+        console.log("kakunin_status:", res.status);
+        console.log("kakunin_data:", res.data);
+        console.log("++end++");
+      });
+
+    // const apiUrl = "http://localhost:7000/result_detail";
+    // axios
+    //   .post(apiUrl, {
+    //     user_id: param.state.user_id,
+    //     parameter_id: param.state.id,
+    //   })
+    //   //.then((res) => {
+    //   // console.log(param.state.user_id, param.state.id);
+    //   // fetch("http://localhost:7000/result_detail", {
+    //   //   method: "POST",
+    //   //   body: JSON.stringify({
+    //   //     user_id: param.state.user_id,
+    //   //     parameter_id: param.state.id,
+    //   //   }),
+    //   // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     setQuestions(res);
+    //     console.log(questions);
+    //   });
+  }, []);
 
   return (
     <>

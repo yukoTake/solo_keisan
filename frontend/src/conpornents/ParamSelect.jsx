@@ -1,13 +1,9 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { UserContext } from "../App.jsx";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../del_App.jsx";
 import { useNavigate } from "react-router-dom";
-// import { ParamContext } from "./NewQ.jsx";
-
-// export const PramContext = createContext({ id: 0 });
 
 export function ParamSelect() {
   const user = useContext(UserContext);
-  // const [selectedParam, setSelectedParam] = useContext(ParamContext);
   const [paramList, setParamList] = useState([]);
   const [selectedParam, setSelectedParam] = useState({ id: 0 });
 
@@ -26,14 +22,24 @@ export function ParamSelect() {
   };
 
   useEffect(() => {
+    console.log("user.id", user.id);
+    let isDo = true;
+    // if (isDo) {
     fetch(`http://localhost:7000/parameters/user/${user.id}`)
       .then((res) => res.json())
       .then((res) => {
-        setParamList(res);
-        const [lastRes] = res.slice(-1);
-        console.log(lastRes);
-        setSelectedParam(lastRes);
+        if (isDo) {
+          setParamList(res);
+          const [lastRes] = res.slice(-1);
+          console.log("lastRes", lastRes);
+          setSelectedParam(lastRes);
+          isDo = false;
+        }
       });
+    // }
+    return () => {
+      isDo = false;
+    };
   }, []);
 
   return (
@@ -45,7 +51,7 @@ export function ParamSelect() {
         onChange={(e) => {
           const id = Number(e.target.value);
           const obj = paramList.find((param) => param.id === id);
-          console.log(obj);
+          // console.log(obj);
           setSelectedParam(obj);
         }}
       >

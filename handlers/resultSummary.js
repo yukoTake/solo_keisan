@@ -42,11 +42,12 @@ module.exports = {
     console.log("---resultSummary.js--new--start-");
     let newId = await knex(table).max("id").first();
     newId = newId.max + 1;
-    // console.log(newId);
+    console.log("newId----", newId);
+    console.log("parameter_id----", parameter_id);
     return await knex(table)
       .insert({
         parameter_id: parameter_id,
-        date: new Date(),
+        timestamp: new Date(),
         id: newId,
       })
       .returning("*");

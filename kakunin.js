@@ -15,16 +15,16 @@ console.log("+++kakunin+++++");
 //   console.log("++end++");
 // });
 
-// const apiUrl = "http://localhost:7000/result_detail";
-// axios.post(apiUrl, { user_id: 1, parameter_id: 1 }).then((res) => {
-//   console.log("kakunin_status:", res.status);
-//   console.log("kakunin_data:", res.data);
-//   console.log("++end++");
-// });
-
-const apiUrl = "http://localhost:7000/parameters/user/1";
-axios.get(apiUrl).then((res) => {
+const apiUrl = "http://localhost:7000/result_detail";
+axios.post(apiUrl, { user_id: 1, parameter_id: 1 }).then((res) => {
   console.log("kakunin_status:", res.status);
   console.log("kakunin_data:", res.data);
   console.log("++end++");
 });
+
+// const apiUrl = "http://localhost:7000/parameters/user/1";
+// axios.get(apiUrl).then((res) => {
+//   console.log("kakunin_status:", res.status);
+//   console.log("kakunin_data:", res.data);
+//   console.log("++end++");
+// });
