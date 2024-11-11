@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import { ParamSelect } from "./ParamSelect.jsx";
 import { ParamNew } from "./ParamNew.jsx";
 
+// export const ParamContext = createContext();
 export function NewQ() {
   const [paramClass, setParamClass] = useState("new");
+  // const [selectedParam, setSelectedParam] = useState({ id: 0 });
   return (
     <>
       <h1>新しい問題にチャレンジしよう</h1>

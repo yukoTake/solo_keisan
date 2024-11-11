@@ -1,17 +1,27 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../App.jsx";
+import { useNavigate } from "react-router-dom";
+// import { ParamContext } from "./NewQ.jsx";
+
+// export const PramContext = createContext({ id: 0 });
 
 export function ParamSelect() {
   const user = useContext(UserContext);
+  // const [selectedParam, setSelectedParam] = useContext(ParamContext);
   const [paramList, setParamList] = useState([]);
   const [selectedParam, setSelectedParam] = useState({ id: 0 });
+
+  const navigate = useNavigate();
+  const navigateUrl = (url) => {
+    navigate(url, { state: selectedParam });
+  };
 
   const getArg = (min, max, list, decimal) => {
     if (list === null) {
       return min + " 〜 " + max + " (小数点: " + decimal + " )";
     } else {
       console.log(list, min);
-      return "リスト: " + list.join(",");
+      return list.join(",");
     }
   };
 
@@ -25,6 +35,7 @@ export function ParamSelect() {
         setSelectedParam(lastRes);
       });
   }, []);
+
   return (
     <>
       <select
@@ -57,7 +68,7 @@ export function ParamSelect() {
             )}
           </div>
           <div>
-            2つめの数の設定：
+            2つめの数の設定：{" "}
             {getArg(
               selectedParam.arg2_min,
               selectedParam.arg2_max,
@@ -74,7 +85,13 @@ export function ParamSelect() {
       ) : (
         <div>未選択です</div>
       )}
-      <p>ParamSelect</p>
+      <button
+        onClick={() => {
+          navigateUrl("/Test");
+        }}
+      >
+        テスト スタート
+      </button>
     </>
   );
 }
