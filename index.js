@@ -40,6 +40,14 @@ app.post("/keisan/parameters", async (req, res) => {
 });
 
 //result_summary------------------------------------------
+app.get("/keisan/result_summary/user/:id", async (req, res) => {
+  console.log("--index.js--app.get--/result_summary-User-start-");
+  const id = req.params.id;
+  const resData = await readResultSummery.findUser(db, id);
+  // console.log("resData;", resData);
+  res.status(200).json(resData);
+});
+
 app.get("/keisan/result_summary/:id", async (req, res) => {
   console.log("--index.js--app.get--/result_summary--start-");
   const id = req.params.id;
@@ -67,13 +75,14 @@ app.patch("/keisan/result_summary", async (req, res) => {
 });
 
 //result_detail------------------------------------------
-// app.get("/result_detail/:summary_id", async (req, res) => {
-//   console.log("--index.js--app.get--/result_detail/--start-");
-//   const id = req.params.summary_id;
-//   const resData = await readResultDetail.find(db, id);
-//   // console.log("resData;", resData);
-//   res.status(200).json(resData);
-// });
+app.get("/keisan/result_detail/:summary_id", async (req, res) => {
+  console.log("--index.js--app.get--/result_detail/--start-");
+  const summary_id = req.params.summary_id;
+
+  const resData = await readResultDetail.find(db, summary_id);
+  console.log("resData;", resData);
+  res.status(200).json(resData);
+});
 
 app.post("/keisan/result_detail", async (req, res) => {
   console.log("--index.js--app.post--/result_detail/--start-");

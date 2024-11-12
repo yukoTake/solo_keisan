@@ -18,9 +18,9 @@ function App() {
       {/*<UserContext.Provider value={{ user }}>*/}
       <header>
         <div className="header_title">計算テスト</div>
-        <p>ようこそ、{user.name}さん</p>
+        <div id="welcome">ようこそ、{user.name}さん</div>
       </header>
-      <nav>
+      <section id="top_button">
         <button
           onClick={() => {
             navigateUrl("/NewQ");
@@ -29,8 +29,14 @@ function App() {
           新しい問題
         </button>
         <button>過去の問題</button>
-        <button>結果を確認</button>
-      </nav>{" "}
+        <button
+          onClick={() => {
+            navigateUrl("/Result");
+          }}
+        >
+          結果を確認
+        </button>
+      </section>
       {/*</UserContext.Provider>*/}
     </>
   );

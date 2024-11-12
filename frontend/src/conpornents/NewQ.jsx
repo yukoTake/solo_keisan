@@ -17,8 +17,10 @@ export function NewQ() {
     <>
       <header>
         <div className="header_title">新しい問題にチャレンジしよう</div>
-        <a href="/">HOME</a>
-        <div>ログイン：{user.name}さん</div>
+        <div className="option">
+          <a href="/">HOME</a>
+          <div>ログイン：{user.name}さん</div>
+        </div>
       </header>
       <section id="radio_area">
         <div id="radio_title">テストの条件を設定してね！</div>

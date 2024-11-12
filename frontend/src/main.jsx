@@ -5,31 +5,15 @@ import App from "./App.jsx";
 import { Routes, BrowserRouter, Route } from "react-router-dom";
 import { NewQ } from "./conpornents/NewQ.jsx";
 import { Test } from "./conpornents/Test.jsx";
-
-// export const UserContext = createContext();
-// const UserProvider = ({ conponent }) => {
-//   const [user, setUser] = useState({ id: 1, name: "pochi" });
-//
-//   return (
-//     <UserContext.Provider value={{ user, setUser }}>
-//       {conponent}
-//     </UserContext.Provider>
-//   );
-// };
+import { Result } from "./conpornents/Result.jsx";
 
 createRoot(document.getElementById("root")).render(
-  //<StrictMode>
-  // <UserContext.Provider value={{ id: 1, name: "pochi" }}>
-  // <UserProvider>
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/NewQ" element={<NewQ />} />
       <Route path="/Test" element={<Test />} />
+      <Route path="/Result" element={<Result />} />
     </Routes>
   </BrowserRouter>,
-  // </UserProvider>,
-  // </UserContext.Provider>,
-
-  /*</StrictMode>,*/
 );

@@ -3,16 +3,16 @@ const table = "result_summary";
 
 module.exports = {
   table,
-  // async findUser(knex, id) {
-  //   //未使用ーーーーー
-  //   console.log("---resultSummary.js--findUser--start-");
-  //
-  //   return await knex
-  //     .select("T.*")
-  //     .from(`${table} as T`)
-  //     .join("parameters as P", "P.id", "T.parameter_id")
-  //     .where("P.user_id", id);
-  // },
+  async findUser(knex, user_id) {
+    console.log("---resultSummary.js--findUser--start-");
+
+    return await knex
+      .select("T.*")
+      .from(`${table} as T`)
+      .join("parameters as P", "P.id", "T.parameter_id")
+      .where("P.user_id", user_id)
+      .whereNotNull("time");
+  },
 
   async findSummary(knex, id) {
     console.log("---resultSummary.js--findSummery--start-");

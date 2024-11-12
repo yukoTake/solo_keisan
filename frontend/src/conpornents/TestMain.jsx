@@ -19,8 +19,9 @@ export function TestMain({ param }) {
   const [answer, setAnswer] = useState("");
   const [isRes, setIsRes] = useState();
   const [isResDisplay, setIsResDisplay] = useState(false);
-
-  console.log("@@@", param.state);
+  console.log("Q", questionNo);
+  console.log("Qe", questions);
+  // console.log("@@@", param.state);
   const changeArg = (num) => {
     return Number(parseFloat(num).toString());
   };
@@ -33,20 +34,16 @@ export function TestMain({ param }) {
         parameter_id: param.state.param.id,
       })
       .then((res) => {
-        console.log("res.data〜〜", res.data);
+        // console.log("res.data〜〜", res.data);
         setQuestions(res.data);
-        setQuestionNo(0);
+        setQuestionNo(1);
         setCorrectCount(0);
       });
   };
 
-  useEffect(() => {
-    console.log("Updated questions:", questions);
-  }, [questions]);
-
   const checkAnswer = () => {
-    console.log(Number(answer), questions[questionNo].correct);
-    if (Number(answer) === Number(questions[questionNo].correct)) {
+    // console.log(Number(answer), questions[questionNo].correct);
+    if (Number(answer) === Number(questions[questionNo - 1].correct)) {
       setIsRes(true);
       setCorrectCount(correctCount + 1);
     } else {
@@ -55,17 +52,17 @@ export function TestMain({ param }) {
     const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
       .patch(apiUrl, {
-        summary_id: questions[questionNo].summary_id,
-        question_no: questions[questionNo].question_no,
+        summary_id: questions[questionNo - 1].summary_id,
+        question_no: questions[questionNo - 1].question_no,
         answered: Number(answer),
         isCorrectly: isRes,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setIsResDisplay(true);
         setAnswer("");
 
-        if (questionNo < questions.length - 1) {
+        if (questionNo < questions.length) {
           setQuestionNo(questionNo + 1);
         } else {
           //テスト終了
@@ -73,33 +70,24 @@ export function TestMain({ param }) {
           setIsDoTest("end");
 
           const apiUrl = "http://localhost:7000/keisan/result_summary";
-          axios
-            .patch(apiUrl, {
-              summary_id: questions[questionNo].summary_id,
-              correct_count: correctCount,
-              time: Number(time),
-            })
-            .then((res) => {
-              console.log(res.data);
-            });
+          axios.patch(apiUrl, {
+            summary_id: questions[questionNo - 1].summary_id,
+            correct_count: correctCount,
+            time: Number(time),
+          });
         }
       });
-
-    //Detailに結果登録
-    //結果登録用に回答数、ミスのカウントステートつくる
-    //最後にsummeryに結果登録
-    //最後に結果表示（画面推移）
   };
 
   return (
     <>
       {isDoTest === "start" && questions.length > 0 ? (
         <>
-          <div id={"q_no"}>第{questions[questionNo].question_no}問</div>
+          <div id={"q_no"}>第{questions[questionNo - 1].question_no}問</div>
           <section id="question_sec">
-            <div>{changeArg(questions[questionNo].arg1)}</div>
-            <div>{questions[questionNo].operator}</div>
-            <div>{changeArg(questions[questionNo].arg2)}</div>
+            <div>{changeArg(questions[questionNo - 1].arg1)}</div>
+            <div>{questions[questionNo - 1].operator}</div>
+            <div>{changeArg(questions[questionNo - 1].arg2)}</div>
           </section>
           <section id="answer_num_sec">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
@@ -163,6 +151,7 @@ export function TestMain({ param }) {
             onClick={() => {
               madeQuestion();
               setIsDoTest("start");
+              setQuestionNo(1);
             }}
           >
             もう一度テストする

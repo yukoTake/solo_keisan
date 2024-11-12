@@ -3,14 +3,13 @@ const table = "result_detail";
 
 module.exports = {
   table,
-  // async find(knex, id) {
-  //   console.log(`---${table}--find--start-`);
-  //   return await knex
-  //     .select("T.*")
-  //     .from(`${table} as T`)
-  //     .join("result_summary as S", "S.id", "T.summary_id")
-  //     .where("T.summary_id", id);
-  // },
+  async find(knex, summary_id) {
+    console.log(`---${table}--find--start-${summary_id}`);
+    return await knex
+      .select("*")
+      .from(table)
+      .where({ summary_id: Number(summary_id) });
+  },
 
   //問題作成
   async new(knex, { user_id, parameter_id }) {
@@ -32,8 +31,6 @@ module.exports = {
 
     const getNum = (min, max, list, decimal) => {
       if (list === null) {
-        // let num = min + Math.floor(Math.random() * (max - min + 1));
-
         return min + Math.floor(Math.random() * (max - min + 1));
       } else {
         return list[Math.floor(Math.random() * list.length)];

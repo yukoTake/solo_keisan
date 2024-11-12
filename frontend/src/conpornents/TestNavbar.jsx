@@ -28,22 +28,22 @@ export function TestNavbar({ param }) {
 
   return (
     <>
-      <header id="test_nav_bar">
+      <header>
         <div className="header_title">テスト</div>
         {isDoTest !== "wait" ? (
           <div id="middle">
             <div className="middle_children">
-              のこり{questions.length - questionNo}︎問
+              のこり{questions.length - questionNo + 1}︎問
             </div>
             <div className="middle_children">
-              結果：正解数{correctCount}／問題数{questionNo + 1}︎
+              結果：正解数{correctCount}／問題数{questionNo - 1}︎
             </div>
             <div className="middle_children">経過時間：{time}︎秒</div>
           </div>
         ) : (
           <></>
         )}
-        <div id="option">
+        <div className="option">
           <a href="/">HOME</a>
           <div>{param.state.user.name}さん</div>
         </div>
