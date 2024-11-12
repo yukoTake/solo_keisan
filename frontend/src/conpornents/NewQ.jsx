@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { ParamSelect } from "./ParamSelect.jsx";
 import { ParamNew } from "./ParamNew.jsx";
+import "./NewQ.css";
 
 // export const ParamContext = createContext();
 export function NewQ() {

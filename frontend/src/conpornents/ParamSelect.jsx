@@ -96,6 +96,7 @@ export function ParamSelect() {
         <div>未選択です</div>
       )}
       <button
+        className="set_button"
         onClick={() => {
           navigateUrl("/Test");
         }}

@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import "./del_App.css";
+import "./App.css";
 import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext({ id: 1, name: "pochi" });
@@ -15,10 +15,10 @@ function App() {
   return (
     <>
       <UserContext.Provider value={{ user, setUser }}>
-        <section>
+        <header>
           <h1>計算テスト</h1>
           <p>ようこそ、{user.name}さん</p>
-        </section>
+        </header>
         <nav>
           <button
             onClick={() => {

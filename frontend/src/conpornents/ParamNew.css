@@ -4,22 +4,23 @@
     gap: 15px;
 }
 
-.arg{
+.operation_each{
     background-color: #b4e0fb;
     width:550px;
     height: 130px;
     padding-left: 10px;
 }
 
-.arg_row1{
+.operation_title_row{
     display: flex;
     flex-direction: row;
     height: 50px;
     align-items: center;
 
 }
-.arg_title{
+.operation_title{
     font-size: 150%;
+    font-weight: bold;
     padding-right: 20px;
 }
 
@@ -32,9 +33,25 @@
 .number_input{
     font-size: 200%;
     width: 100px;
+    height: 40px;
     text-align: center;
+
 }
 
 #list_input{
     width: 300px;
+}
+
+#operation_check{
+    display: flex;
+    font-size: 150%;
+    margin-left: 10px;
+    gap:20px;
+
+}
+
+.radio_each{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
