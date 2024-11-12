@@ -15,19 +15,20 @@ module.exports = {
   //問題作成
   async new(knex, { user_id, parameter_id }) {
     console.log(`---${table}--new--start-`);
-    //summery登録
-    const summeryUrl = "http://localhost:7000/keisan/result_summary";
-    let postSummery = await axios.post(summeryUrl, {
-      parameter_id: parameter_id,
-    });
-    const summeryId = postSummery.data[0].id;
-    console.log("=summeryId=", summeryId);
-
     //パラメータ取得
     const getUrl = `http://localhost:7000/keisan/parameters/${parameter_id}`; //⭐️あとで修正する
     let param = await axios.get(getUrl);
     [param] = param.data;
     console.log("=param===", param);
+
+    //summery登録
+    const summeryUrl = "http://localhost:7000/keisan/result_summary";
+    let postSummery = await axios.post(summeryUrl, {
+      parameter_id: parameter_id,
+      question_count: param.question_count,
+    });
+    const summeryId = postSummery.data[0].id;
+    console.log("=summeryId=", summeryId);
 
     const getNum = (min, max, list, decimal) => {
       if (list === null) {
@@ -53,7 +54,7 @@ module.exports = {
     };
 
     const questionArr = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= param.question_count; i++) {
       let isOK = false;
       let arg1;
       let arg2;

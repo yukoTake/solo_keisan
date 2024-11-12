@@ -38,7 +38,7 @@ module.exports = {
       .where("T.id", id);
   },
 
-  async new(knex, { parameter_id }) {
+  async new(knex, { parameter_id, question_count }) {
     console.log("---resultSummary.js--new--start-");
     let newId = await knex(table).max("id").first();
     newId = newId.max + 1;
@@ -47,6 +47,7 @@ module.exports = {
     return await knex(table)
       .insert({
         parameter_id: parameter_id,
+        question_count: question_count,
         timestamp: new Date(),
         id: newId,
       })
