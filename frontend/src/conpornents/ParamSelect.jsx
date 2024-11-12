@@ -1,22 +1,23 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../del_App.jsx";
+// import { UserContext } from "../main.jsx";
 import { useNavigate } from "react-router-dom";
 
-export function ParamSelect() {
-  const user = useContext(UserContext);
+export function ParamSelect({ user }) {
+  // const user = useContext(UserContext);
+  console.log("@@@", user);
   const [paramList, setParamList] = useState([]);
   const [selectedParam, setSelectedParam] = useState({ id: 0 });
 
   const navigate = useNavigate();
   const navigateUrl = (url) => {
-    navigate(url, { state: selectedParam });
+    navigate(url, { state: { param: selectedParam, user: user } });
   };
 
   const getArg = (min, max, list, decimal) => {
     if (list === null) {
       return min + " 〜 " + max + " (小数点: " + decimal + " )";
     } else {
-      console.log(list, min);
+      // console.log(list, min);
       return list.join(",");
     }
   };

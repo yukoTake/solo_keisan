@@ -5,3 +5,30 @@
 /*    flex-direction: row;*/
 /*    background-color: #b4e0fb;*/
 /*}*/
+
+#test_nav_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#middle{
+    display: flex;
+    flex-flow: row;
+    gap: 50px;
+    font-size: 130%;
+    width: 900px;
+    height: 50px;
+    color: mediumvioletred;
+    align-items: center;
+}
+
+.middle_children{
+    background-color: beige;
+}
+#option{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    font-size: 140%}

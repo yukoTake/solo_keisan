@@ -1,34 +1,63 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./ParamNew.css";
 import axios from "axios";
+// import { UserContext } from "../main.jsx";
+import { useNavigate } from "react-router-dom";
 
-export function ParamNew() {
+export function ParamNew({ user }) {
+  // const { user } = useContext(UserContext);
   const [arg1Class, setArg1Class] = useState("num");
   const [arg2Class, setArg2Class] = useState("num");
-  const [operation, setOperation] = useState("+");
+  const [operator, setOperator] = useState("+");
   const [arg1Min, setArg1Min] = useState(0);
   const [arg1Max, setArg1Max] = useState(10);
   const [arg1List, setArg1List] = useState("1,2,3");
   const [arg2Min, setArg2Min] = useState(0);
   const [arg2Max, setArg2Max] = useState(10);
   const [arg2List, setArg2List] = useState("1,2,3");
-
   const [resMin, setResMin] = useState(0);
-  const [resMax, setResMax] = useState(0);
-  const [questionCount, setQuestionCount] = useState(10);
+  const [resMax, setResMax] = useState(100);
 
-  const redistParameter = () => {
+  const [questionCount, setQuestionCount] = useState(10);
+  const navigate = useNavigate();
+
+  const navigateUrl = (url, obj) => {
+    navigate(url, { state: { param: obj, user: user } });
+  };
+
+  const redisParameter = () => {
+    const argChange = (min, max, list, cls) => {
+      if (cls === "num") {
+        return { min: min, max: max, list: null };
+      } else {
+        return { min: null, max: null, list: list.split(",") };
+      }
+    };
+
+    const arg1Obj = argChange(arg1Min, arg1Max, arg1List, arg1Class);
+    const arg2Obj = argChange(arg1Min, arg1Max, arg1List, arg2Class);
+
     const apiUrl = "http://localhost:7000/keisan/parameters";
     axios
       .post(apiUrl, {
-        user_id: param.state.user_id,
-        parameter_id: param.state.id,
+        user_id: user.id,
+        arg1_min: arg1Obj.min,
+        arg1_max: arg1Obj.max,
+        arg1_decimal: 0, //現在非対応
+        arg1_list: arg1Obj.list,
+        arg2_min: arg2Obj.min,
+        arg2_max: arg2Obj.max,
+        arg2_decimal: 0, //現在非対応
+        arg2_list: arg2Obj.list,
+        operator: operator,
+        res_min: resMin,
+        res_max: resMax,
+        question_count: questionCount,
+        timestamp: new Date(),
       })
       .then((res) => {
-        console.log("res.data〜〜", res.data);
-        setQuestions(res.data);
-        setQuestionNo(0);
-        setCorrectCount(0);
+        console.log("res.data〜〜", res.data[0]);
+        navigateUrl("/Test", res.data[0]);
       });
   };
 
@@ -58,9 +87,11 @@ export function ParamNew() {
           list: arg2List,
         },
       ].map((arg) => (
-        <div className="operation_each" key={arg.num}>
-          <div className="operation_title_row">
-            <p className="operation_title">{arg.num}つめの数</p>
+        <div className="operation_each" key={`d1_${arg.num}`}>
+          <div className="operation_title_row" key={`d2_${arg.num}`}>
+            <p className="operation_title" key={`p_${arg.num}`}>
+              {arg.num}つめの数
+            </p>
 
             {[
               { key: "num", text: "範囲内の数を使う" },
@@ -68,7 +99,7 @@ export function ParamNew() {
             ].map((radio) => (
               <>
                 <input
-                  key={radio.key}
+                  key={`r_${radio.key}`}
                   type="radio"
                   className="radio"
                   name={`arg${arg.num}`}
@@ -138,9 +169,9 @@ export function ParamNew() {
                 type="radio"
                 className="radio"
                 name="ope"
-                checked={operation === radio.text}
+                checked={operator === radio.text}
                 onChange={() => {
-                  setOperation(radio.text);
+                  setOperator(radio.text);
                 }}
               />
               {radio.text} ({radio.value})
@@ -192,8 +223,7 @@ export function ParamNew() {
       <button
         className="set_button"
         onClick={() => {
-          redistParameter();
-          navigateUrl("/Test");
+          redisParameter();
         }}
       >
         設定完了

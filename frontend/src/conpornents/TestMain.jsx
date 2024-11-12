@@ -20,7 +20,7 @@ export function TestMain({ param }) {
   const [isRes, setIsRes] = useState();
   const [isResDisplay, setIsResDisplay] = useState(false);
 
-  console.log(param);
+  console.log("@@@", param.state);
   const changeArg = (num) => {
     return Number(parseFloat(num).toString());
   };
@@ -29,8 +29,8 @@ export function TestMain({ param }) {
     const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
       .post(apiUrl, {
-        user_id: param.state.user_id,
-        parameter_id: param.state.id,
+        user_id: param.state.param.user_id,
+        parameter_id: param.state.param.id,
       })
       .then((res) => {
         console.log("res.data〜〜", res.data);
@@ -69,7 +69,7 @@ export function TestMain({ param }) {
           setQuestionNo(questionNo + 1);
         } else {
           //テスト終了
-
+          setQuestionNo(questionNo + 1);
           setIsDoTest("end");
 
           const apiUrl = "http://localhost:7000/keisan/result_summary";

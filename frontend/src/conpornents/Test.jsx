@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { TestNavbar } from "./TestNavbar.jsx";
 import { TestMain } from "./TestMain.jsx";
 import { createContext, useState } from "react";
@@ -15,7 +15,7 @@ export function Test() {
   const [correctCount, setCorrectCount] = useState(0);
   const [time, setTime] = useState(0);
   const param = useLocation();
-  // console.log(param);
+  console.log(param);
   return (
     <QuestionsContext.Provider value={{ questions, setQuestions }}>
       <QuestionNoContext.Provider value={{ questionNo, setQuestionNo }}>
@@ -25,7 +25,7 @@ export function Test() {
           >
             <TimeContext.Provider value={{ time, setTime }}>
               <>
-                <TestNavbar />
+                <TestNavbar param={param} />
                 <TestMain param={param} />
               </>
             </TimeContext.Provider>

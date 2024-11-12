@@ -29,6 +29,16 @@ app.get("/keisan/parameters/:id", async (req, res) => {
   res.status(200).json(resData);
 });
 
+app.post("/keisan/parameters", async (req, res) => {
+  console.log("--index.js--app.get--/parameters--start-");
+
+  const params = req.body; //user_id, parameter_id を取得
+  const resData = await readParameters.new(db, params);
+
+  // console.log("resData;", resData);
+  res.status(201).json(resData);
+});
+
 //result_summary------------------------------------------
 app.get("/keisan/result_summary/:id", async (req, res) => {
   console.log("--index.js--app.get--/result_summary--start-");
