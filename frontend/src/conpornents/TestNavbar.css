@@ -24,7 +24,13 @@
     align-items: center;
 }
 
-.middle_children{
-    background-color: beige;
-}
+/*.middle_children{*/
+/*    background-color: beige;*/
+/*}*/
 
+#info{
+    display: flex;
+    flex-flow: row;
+    background-color: beige;
+    margin-bottom: 30px;
+}

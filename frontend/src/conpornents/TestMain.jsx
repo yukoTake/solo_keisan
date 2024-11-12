@@ -137,6 +137,7 @@ export function TestMain({ param }) {
         </>
       ) : isDoTest === "wait" ? (
         <button
+          id="start_button"
           onClick={() => {
             madeQuestion();
             setIsDoTest("start");

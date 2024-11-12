@@ -29,7 +29,13 @@ export function TestNavbar({ param }) {
   return (
     <>
       <header>
-        <div className="header_title">テスト</div>
+        <div className="header_title">新しい問題にチャレンジしよう</div>
+        <div className="option">
+          <a href="/">HOME</a>
+          <div>{param.state.user.name}さん</div>
+        </div>
+      </header>
+      <section id="info">
         {isDoTest !== "wait" ? (
           <div id="middle">
             <div className="middle_children">
@@ -43,11 +49,7 @@ export function TestNavbar({ param }) {
         ) : (
           <></>
         )}
-        <div className="option">
-          <a href="/">HOME</a>
-          <div>{param.state.user.name}さん</div>
-        </div>
-      </header>
+      </section>
     </>
   );
 }
