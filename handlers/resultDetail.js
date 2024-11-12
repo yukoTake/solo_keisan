@@ -16,7 +16,7 @@ module.exports = {
   async new(knex, { user_id, parameter_id }) {
     console.log(`---${table}--new--start-`);
     //summery登録
-    const summeryUrl = "http://localhost:7000/result_summary";
+    const summeryUrl = "http://localhost:7000/keisan/result_summary";
     let postSummery = await axios.post(summeryUrl, {
       parameter_id: parameter_id,
     });
@@ -24,7 +24,7 @@ module.exports = {
     console.log("=summeryId=", summeryId);
 
     //パラメータ取得
-    const getUrl = `http://localhost:7000/parameters/${parameter_id}`; //⭐️あとで修正する
+    const getUrl = `http://localhost:7000/keisan/parameters/${parameter_id}`; //⭐️あとで修正する
     let param = await axios.get(getUrl);
     [param] = param.data;
     console.log("=param===", param);

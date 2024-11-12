@@ -52,4 +52,20 @@ module.exports = {
       })
       .returning("*");
   },
+
+  //結果登録
+  async edit(knex, { summary_id, correctCount, questionCount }) {
+    console.log(`---${table}--edit--start-`);
+
+    return await knex(table)
+      .update({
+        time: time,
+        correct_count: correctCount,
+        question_count: questionCount,
+      })
+      .where({
+        id: Number(summary_id),
+      })
+      .returning("*");
+  },
 };

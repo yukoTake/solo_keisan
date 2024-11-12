@@ -29,11 +29,17 @@ export function TestNavbar() {
     <>
       <header id="test_nav_bar">
         <div>テスト</div>
-        <div>のこり{questions.length - questionNo}︎問</div>
-        <div>
-          結果：正解数{correctCount}／問題数{questionNo}︎
-        </div>
-        <div>経過時間：{time}︎秒</div>
+        {isDoTest !== "wait" ? (
+          <>
+            <div>のこり{questions.length - questionNo}︎問</div>
+            <div>
+              結果：正解数{correctCount}／問題数{questionNo + 1}︎
+            </div>
+            <div>経過時間：{time}︎秒</div>
+          </>
+        ) : (
+          <></>
+        )}
         <a href="/">HOME</a>
       </header>
     </>

@@ -28,7 +28,7 @@ describe("起動確認_result_summery_test.mjs", () => {
 
 describe("all", () => {
   it("should return an array of result_summery", async () => {
-    const url = "http://localhost:7000/result_summary/1";
+    const url = "http://localhost:7000/keisan/result_summary/1";
     const resData = await axios.get(url);
 
     // console.log(resData);

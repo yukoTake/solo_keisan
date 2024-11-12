@@ -19,9 +19,12 @@ export function TestMain({ param }) {
   const [isResDisplay, setIsResDisplay] = useState(false);
 
   console.log(param);
+  const changeArg = (num) => {
+    return Number(parseFloat(num).toString());
+  };
 
   const madeQuestion = () => {
-    const apiUrl = "http://localhost:7000/result_detail";
+    const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
       .post(apiUrl, {
         user_id: param.state.user_id,
@@ -47,7 +50,7 @@ export function TestMain({ param }) {
     } else {
       setIsRes(false);
     }
-    const apiUrl = "http://localhost:7000/result_detail";
+    const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
       .patch(apiUrl, {
         summary_id: questions[questionNo].summary_id,
@@ -79,9 +82,9 @@ export function TestMain({ param }) {
         <>
           <div id={"q_no"}>第{questions[questionNo].question_no}問</div>
           <section id="question_sec">
-            <div>{questions[questionNo].arg1}</div>
+            <div>{changeArg(questions[questionNo].arg1)}</div>
             <div>{questions[questionNo].operator}</div>
-            <div>{questions[questionNo].arg2}</div>
+            <div>{changeArg(questions[questionNo].arg2)}</div>
           </section>
           <section id="answer_num_sec">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
@@ -97,48 +100,37 @@ export function TestMain({ param }) {
             ))}
           </section>
           <section id="answer_area">
+            <button
+              style={{ visibility: answer === "" ? "hidden" : "visible" }}
+              onClick={() => {
+                setAnswer("");
+              }}
+            >
+              修正する
+            </button>
+
             <div>こたえ</div>
             <div id="answer">{answer}</div>
 
-            {answer !== "" ? (
-              <section id="answer_buttons">
-                <button
-                  onClick={() => {
-                    setAnswer("");
-                  }}
-                >
-                  修正する
-                </button>
-                <button
-                  onClick={() => {
-                    checkAnswer();
-                  }}
-                >
-                  回答する
-                </button>
-                {/*{isResDisplay ? (*/}
-                {/*  isRes ? (*/}
-                {/*    <p>OK! 正解！</p>*/}
-                {/*  ) : (*/}
-                {/*    <p>あたたっ！まちがい！</p>*/}
-                {/*  )*/}
-                {/*) : (*/}
-                {/*  ""*/}
-                {/*)}*/}
-              </section>
-            ) : (
-              <></>
-            )}
+            <section id="answer_buttons">
+              <button
+                style={{ visibility: answer === "" ? "hidden" : "visible" }}
+                onClick={() => {
+                  checkAnswer();
+                }}
+              >
+                回答する
+              </button>
+            </section>
           </section>
-          {isResDisplay ? (
-            isRes ? (
-              <p>OK! 正解！</p>
-            ) : (
-              <p>あたたっ！まちがい！</p>
-            )
-          ) : (
-            ""
-          )}
+
+          <section
+            style={{
+              visibility: !isResDisplay ? "hidden" : "visible",
+            }}
+          >
+            {isRes ? <p>OK! 正解！</p> : <p>あたたっ！まちがい！</p>}
+          </section>
         </>
       ) : isDoTest === "wait" ? (
         <button

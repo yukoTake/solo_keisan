@@ -13,7 +13,7 @@ app.use(cors());
 //users------------------------------------------
 
 //parameters------------------------------------------
-app.get("/parameters/user/:id", async (req, res) => {
+app.get("/keisan/parameters/user/:id", async (req, res) => {
   console.log("--index.js--app.get--/parameters/user--start-");
   const id = req.params.id;
   const resData = await readParameters.findUser(db, id);
@@ -21,7 +21,7 @@ app.get("/parameters/user/:id", async (req, res) => {
   res.status(200).json(resData);
 });
 
-app.get("/parameters/:id", async (req, res) => {
+app.get("/keisan/parameters/:id", async (req, res) => {
   console.log("--index.js--app.get--/parameters--start-");
   const id = req.params.id;
   const resData = await readParameters.find(db, id);
@@ -30,7 +30,7 @@ app.get("/parameters/:id", async (req, res) => {
 });
 
 //result_summary------------------------------------------
-app.get("/result_summary/:id", async (req, res) => {
+app.get("/keisan/result_summary/:id", async (req, res) => {
   console.log("--index.js--app.get--/result_summary--start-");
   const id = req.params.id;
   const resData = await readResultSummery.findSummary(db, id);
@@ -38,13 +38,22 @@ app.get("/result_summary/:id", async (req, res) => {
   res.status(200).json(resData);
 });
 
-app.post("/result_summary", async (req, res) => {
+app.post("/keisan/result_summary", async (req, res) => {
   console.log("--index.js--app.post--/result_summary--start-");
   const params = req.body; //user_id, parameter_id を取得
   const resData = await readResultSummery.new(db, params);
   console.log("params;", params);
   console.log("resData;", resData);
   res.status(201).json(resData);
+});
+
+app.patch("/keisan/result_summary", async (req, res) => {
+  console.log("--index.js--app.patch--/result_summary/--start-");
+  const params = req.body;
+  // console.log("params;", params);
+  const resData = await readResultSummery.edit(db, params);
+  // console.log("resData;", resData);
+  res.status(200).json(resData);
 });
 
 //result_detail------------------------------------------
@@ -56,7 +65,7 @@ app.post("/result_summary", async (req, res) => {
 //   res.status(200).json(resData);
 // });
 
-app.post("/result_detail", async (req, res) => {
+app.post("/keisan/result_detail", async (req, res) => {
   console.log("--index.js--app.post--/result_detail/--start-");
   const params = req.body;
   // console.log("params;", params);
@@ -65,7 +74,7 @@ app.post("/result_detail", async (req, res) => {
   res.status(201).json(resData);
 });
 
-app.patch("/result_detail", async (req, res) => {
+app.patch("/keisan/result_detail", async (req, res) => {
   console.log("--index.js--app.patch--/result_detail/--start-");
   const params = req.body;
   // console.log("params;", params);
@@ -73,6 +82,7 @@ app.patch("/result_detail", async (req, res) => {
   // console.log("resData;", resData);
   res.status(200).json(resData);
 });
+
 //------------------------------------------------------
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
