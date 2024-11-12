@@ -13,27 +13,24 @@ export function ParamNew() {
         <div className="arg" key={arg.num}>
           <div className="arg_row1">
             <p className="arg_title">{arg.num}つめの数</p>
-            <input
-              type="radio"
-              className="radio"
-              name={`arg${arg.num}`}
-              checked={arg.class === "num"}
-              onChange={() => {
-                arg.func("num");
-              }}
-            />
-            範囲内の数を使う
-            <input
-              type="radio"
-              className="radio"
-              name={`arg${arg.num}`}
-              value="list"
-              checked={arg.class === "list"}
-              onChange={() => {
-                arg.func("list");
-              }}
-            />
-            指定の数を使う
+            {[
+              { key: "num", text: "範囲内の数を使う" },
+              { key: "list", text: "指定の数を使う" },
+            ].map((radio) => (
+              <>
+                <input
+                  key={radio.key}
+                  type="radio"
+                  className="radio"
+                  name={`arg${arg.num}`}
+                  checked={arg.class === radio.key}
+                  onChange={() => {
+                    arg.func(radio.key);
+                  }}
+                />
+                {radio.text}
+              </>
+            ))}
           </div>
 
           {arg.class === "num" ? (
