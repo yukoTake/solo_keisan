@@ -1,0 +1,18 @@
+#param_display{
+    font-size: 140%;
+    background-color: beige;
+    width: 500px;
+padding: 15px;
+    margin: 10px;
+}
+
+#pull_text_param{font-size: 130%}
+
+#pull_area_param{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    padding: 20px;
+    height: 50px;
+    width: 350px;
+}

@@ -228,15 +228,6 @@ export function ParamNew({ user }) {
       >
         設定完了
       </button>
-      <div>
-        {arg1Class}, {arg1Min}, {arg1Max}, {arg1List}
-      </div>
-      <div>
-        {arg2Class}, {arg2Min}, {arg2Max}, {arg2List}
-      </div>
-      <div>
-        {resMin}, {resMax}, {operator}, {questionCount}
-      </div>
     </section>
   );
 }

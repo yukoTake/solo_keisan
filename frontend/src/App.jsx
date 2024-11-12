@@ -18,7 +18,7 @@ function App() {
       {/*<UserContext.Provider value={{ user }}>*/}
       <header>
         <div className="header_title">計算テスト</div>
-        <div id="welcome">ようこそ、{user.name}さん</div>
+        <div className="option">ようこそ、{user.name}さん</div>
       </header>
       <section id="top_button">
         <button

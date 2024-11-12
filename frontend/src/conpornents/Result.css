@@ -30,10 +30,7 @@ th {
     width: 350px;
 }
 #pull_text{font-size: 130%}
-.pull{
-    font-size: 200%;
-     background-color: lightpink;
-}
+
 
 #top{
     display: flex;

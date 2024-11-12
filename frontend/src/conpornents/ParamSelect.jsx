@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 // import { UserContext } from "../main.jsx";
 import { useNavigate } from "react-router-dom";
+import "./ParamSelect.css";
 
 export function ParamSelect({ user }) {
   // const user = useContext(UserContext);
@@ -45,28 +46,31 @@ export function ParamSelect({ user }) {
 
   return (
     <>
-      <select
-        name="pull"
-        className="pulldown"
-        value={selectedParam.id}
-        onChange={(e) => {
-          const id = Number(e.target.value);
-          const obj = paramList.find((param) => param.id === id);
+      <div id="pull_area_param">
+        <div id="pull_text_param">確認したい学習を選択してください</div>
+        <select
+          name="pull"
+          className="pull"
+          value={selectedParam.id}
+          onChange={(e) => {
+            const id = Number(e.target.value);
+            const obj = paramList.find((param) => param.id === id);
 
-          setSelectedParam(obj);
-        }}
-      >
-        {paramList.map((param) => (
-          <option key={param.id} value={param.id}>
-            {param.id + "：" + param.timestamp.split("T")[0]}
-          </option>
-        ))}
-      </select>
+            setSelectedParam(obj);
+          }}
+        >
+          {paramList.map((param) => (
+            <option key={param.id} value={param.id}>
+              {param.id + "：" + param.timestamp.split("T")[0]}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {selectedParam.hasOwnProperty("arg1_min") ? (
-        <section>
+        <section id="param_display">
           <div>
-            1つめの数：
+            1つめの数　 ：
             {getArg(
               selectedParam.arg1_min,
               selectedParam.arg1_max,
@@ -75,7 +79,7 @@ export function ParamSelect({ user }) {
             )}
           </div>
           <div>
-            2つめの数：{" "}
+            2つめの数　 ：{" "}
             {getArg(
               selectedParam.arg2_min,
               selectedParam.arg2_max,
@@ -83,13 +87,13 @@ export function ParamSelect({ user }) {
               selectedParam.arg2_decimal,
             )}
           </div>
-          <div>演算子：{selectedParam.operator}</div>
+          <div>演算子　　　：{selectedParam.operator}</div>
           <div>
             計算結果の数：
             {selectedParam.res_min + " 〜 " + selectedParam.res_max}
           </div>
           <div>
-            出題数：
+            出題数　　　：
             {selectedParam.question_count}
           </div>
         </section>
