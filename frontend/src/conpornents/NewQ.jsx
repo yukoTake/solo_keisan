@@ -13,7 +13,7 @@ export function NewQ() {
         <a href="/">HOME</a>
       </header>
       <p>
-        パラメータを設定してね！
+        テストの条件を設定してね！
         <br />
         <input
           type="radio"

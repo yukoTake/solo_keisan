@@ -21,6 +21,7 @@ exports.seed = async function (knex) {
       operator: "+",
       res_min: 0,
       res_max: 20,
+      question_count: 5,
       timestamp: new Date(),
     },
     {
@@ -36,7 +37,8 @@ exports.seed = async function (knex) {
       arg2_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       operator: "+",
       res_min: 0,
-      res_max: 100,
+      res_max: 10,
+      question_count: 5,
       timestamp: new Date(),
     },
   ]);

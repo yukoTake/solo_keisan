@@ -5,6 +5,7 @@ import {
   IsDoTestContext,
   QuestionNoContext,
   QuestionsContext,
+  TimeContext,
 } from "./Test.jsx";
 
 export function TestNavbar() {
@@ -12,7 +13,7 @@ export function TestNavbar() {
   const { questionNo, setQuestionNo } = useContext(QuestionNoContext);
   const { isDoTest, setIsDoTest } = useContext(IsDoTestContext);
   const { correctCount, setCorrectCount } = useContext(CorrectCountContext);
-  const [time, setTime] = useState(0);
+  const { time, setTime } = useContext(TimeContext);
 
   useEffect(() => {
     let interval;

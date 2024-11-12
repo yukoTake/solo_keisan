@@ -24,7 +24,7 @@ export function ParamSelect() {
   useEffect(() => {
     console.log("user.id", user.id);
     let isDo = true;
-    // if (isDo) {
+
     fetch(`http://localhost:7000/keisan/parameters/user/${user.id}`)
       .then((res) => res.json())
       .then((res) => {
@@ -36,7 +36,7 @@ export function ParamSelect() {
           isDo = false;
         }
       });
-    // }
+
     return () => {
       isDo = false;
     };
@@ -51,7 +51,7 @@ export function ParamSelect() {
         onChange={(e) => {
           const id = Number(e.target.value);
           const obj = paramList.find((param) => param.id === id);
-          // console.log(obj);
+
           setSelectedParam(obj);
         }}
       >
@@ -65,7 +65,7 @@ export function ParamSelect() {
       {selectedParam.hasOwnProperty("arg1_min") ? (
         <section>
           <div>
-            1つめの数の設定：
+            1つめの数：
             {getArg(
               selectedParam.arg1_min,
               selectedParam.arg1_max,
@@ -74,7 +74,7 @@ export function ParamSelect() {
             )}
           </div>
           <div>
-            2つめの数の設定：{" "}
+            2つめの数：{" "}
             {getArg(
               selectedParam.arg2_min,
               selectedParam.arg2_max,
@@ -84,8 +84,12 @@ export function ParamSelect() {
           </div>
           <div>演算子：{selectedParam.operator}</div>
           <div>
-            計算結果の設定：
+            計算結果の数：
             {selectedParam.res_min + " 〜 " + selectedParam.res_max}
+          </div>
+          <div>
+            出題数：
+            {selectedParam.question_count}
           </div>
         </section>
       ) : (
@@ -96,7 +100,7 @@ export function ParamSelect() {
           navigateUrl("/Test");
         }}
       >
-        テスト スタート
+        設定完了
       </button>
     </>
   );

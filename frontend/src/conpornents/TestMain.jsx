@@ -6,6 +6,7 @@ import {
   IsDoTestContext,
   QuestionNoContext,
   QuestionsContext,
+  TimeContext,
 } from "./Test.jsx";
 
 export function TestMain({ param }) {
@@ -14,6 +15,7 @@ export function TestMain({ param }) {
   const { questionNo, setQuestionNo } = useContext(QuestionNoContext);
   const { isDoTest, setIsDoTest } = useContext(IsDoTestContext);
   const { correctCount, setCorrectCount } = useContext(CorrectCountContext);
+  const { time, setTime } = useContext(TimeContext);
   const [answer, setAnswer] = useState("");
   const [isRes, setIsRes] = useState();
   const [isResDisplay, setIsResDisplay] = useState(false);
@@ -66,7 +68,20 @@ export function TestMain({ param }) {
         if (questionNo < questions.length - 1) {
           setQuestionNo(questionNo + 1);
         } else {
+          //テスト終了
+
           setIsDoTest("end");
+
+          const apiUrl = "http://localhost:7000/keisan/result_summary";
+          axios
+            .patch(apiUrl, {
+              summary_id: questions[questionNo].summary_id,
+              correct_count: correctCount,
+              time: Number(time),
+            })
+            .then((res) => {
+              console.log(res.data);
+            });
         }
       });
 

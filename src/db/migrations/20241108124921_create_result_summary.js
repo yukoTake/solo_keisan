@@ -11,7 +11,8 @@ exports.up = async (knex) => {
       .references("parameters.id")
       .onDelete("CASCADE");
     table.integer("time");
-    table.integer("miss_count");
+    table.integer("question_count");
+    table.integer("correct_count");
     table.timestamp("timestamp").notNullable();
   });
 };

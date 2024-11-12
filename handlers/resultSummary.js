@@ -54,14 +54,13 @@ module.exports = {
   },
 
   //結果登録
-  async edit(knex, { summary_id, correctCount, questionCount }) {
+  async edit(knex, { summary_id, correct_count, time }) {
     console.log(`---${table}--edit--start-`);
 
     return await knex(table)
       .update({
         time: time,
-        correct_count: correctCount,
-        question_count: questionCount,
+        correct_count: correct_count,
       })
       .where({
         id: Number(summary_id),
