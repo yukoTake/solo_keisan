@@ -63,7 +63,7 @@ export function Result() {
               const obj = pullList.find((res) => res.id === id);
 
               setSelectedPull(obj);
-              getDetail();
+              getDetail(e.target.value);
             }}
           >
             {pullList.map((res) => (
