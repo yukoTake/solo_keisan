@@ -39,12 +39,12 @@ export function TestNavbar({ param }) {
         {isDoTest !== "wait" ? (
           <div id="middle">
             <div className="middle_children">
-              のこり{questions.length - questionNo + 1}︎問
+              のこり {questions.length - questionNo + 1} ︎問
             </div>
             <div className="middle_children">
-              結果：正解数{correctCount}／問題数{questionNo - 1}︎
+              せいかい {correctCount}／もんだい {questionNo - 1}︎
             </div>
-            <div className="middle_children">経過時間：{time}︎秒</div>
+            <div className="middle_children">じかん：{time} ︎秒</div>
           </div>
         ) : (
           <></>

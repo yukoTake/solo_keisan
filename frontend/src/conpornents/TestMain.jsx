@@ -83,24 +83,26 @@ export function TestMain({ param }) {
     <body id="test_main">
       {isDoTest === "start" && questions.length > 0 ? (
         <>
-          <div id={"q_no"}>第{questions[questionNo - 1].question_no}問</div>
-          <section id="question_sec">
-            <div>{changeArg(questions[questionNo - 1].arg1)}</div>
-            <div>{questions[questionNo - 1].operator}</div>
-            <div>{changeArg(questions[questionNo - 1].arg2)}</div>
-          </section>
-          <section id="answer_num_sec">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
-              <button
-                key={num}
-                onClick={() => {
-                  setAnswer(answer + `${num}`);
-                  setIsResDisplay(false);
-                }}
-              >
-                {num}
-              </button>
-            ))}
+          <section id="question_area">
+            <div id={"q_no"}>第{questions[questionNo - 1].question_no}問</div>
+            <section id="question_sec">
+              <div>{changeArg(questions[questionNo - 1].arg1)}</div>
+              <div>{questions[questionNo - 1].operator}</div>
+              <div>{changeArg(questions[questionNo - 1].arg2)}</div>
+            </section>
+            <section id="answer_num_sec">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
+                <button
+                  key={num}
+                  onClick={() => {
+                    setAnswer(answer + `${num}`);
+                    setIsResDisplay(false);
+                  }}
+                >
+                  {num}
+                </button>
+              ))}
+            </section>
           </section>
           <section id="answer_area">
             <button
@@ -146,9 +148,10 @@ export function TestMain({ param }) {
           START
         </button>
       ) : (
-        <section>
-          <p>おしまい！</p>
+        <section id="end_area">
+          <div id="end_comment">おしまい！がんばったね！</div>
           <button
+            id="end_button"
             onClick={() => {
               madeQuestion();
               setIsDoTest("start");

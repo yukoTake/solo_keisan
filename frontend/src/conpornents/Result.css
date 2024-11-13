@@ -47,7 +47,8 @@ th {
     justify-content: center;
     gap: 50px;
     font-size: 130%;
-    background-color: beige;
+    background-color: #ffdfe4;
+    border-radius: 1em;
     height: 80px;
     width: 400px;
 }
