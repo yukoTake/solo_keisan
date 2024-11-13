@@ -9,6 +9,8 @@ import {
   TimeContext,
 } from "./Test.jsx";
 import { useNavigate } from "react-router-dom";
+import OKImage from "../img/OK.png";
+import NGImage from "../img/NG.png";
 
 export function TestMain({ param }) {
   // const [selectedParam, setSelectedParam] = useContext(ParamContext);
@@ -148,7 +150,17 @@ export function TestMain({ param }) {
               visibility: !isResDisplay ? "hidden" : "visible",
             }}
           >
-            {isRes ? <p>OK! 正解！</p> : <p>あたたっ！まちがい！</p>}
+            {isRes ? (
+              <div>
+                <p>OK! 正解！</p>
+                <img alt="ok" src={OKImage} />
+              </div>
+            ) : (
+              <div>
+                <p>あたた！まちがい！</p>
+                <img alt="ng" src={NGImage} />
+              </div>
+            )}
           </section>
         </>
       ) : isDoTest === "wait" ? (

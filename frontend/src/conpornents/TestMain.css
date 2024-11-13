@@ -87,6 +87,9 @@ padding-bottom: 20px;
     width:500px
 }
 
+img {
+    width: 300px;
+}
 /*.k-answer{*/
 /*    height: 50px;*/
 /*    align-self: flex-end;*/
