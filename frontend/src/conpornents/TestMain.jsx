@@ -8,6 +8,7 @@ import {
   QuestionsContext,
   TimeContext,
 } from "./Test.jsx";
+import { useNavigate } from "react-router-dom";
 
 export function TestMain({ param }) {
   // const [selectedParam, setSelectedParam] = useContext(ParamContext);
@@ -25,7 +26,11 @@ export function TestMain({ param }) {
   const changeArg = (num) => {
     return Number(parseFloat(num).toString());
   };
+  const navigate = useNavigate();
 
+  const navigateUrl = (url) => {
+    navigate(url, { state: param.state.user });
+  };
   const madeQuestion = () => {
     const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
@@ -160,7 +165,7 @@ export function TestMain({ param }) {
         <section id="end_area">
           <div id="end_comment">おしまい！がんばったね！</div>
           <button
-            id="end_button"
+            className="end_button"
             onClick={() => {
               madeQuestion();
               setIsDoTest("start");
@@ -168,6 +173,14 @@ export function TestMain({ param }) {
             }}
           >
             もう一度テストする
+          </button>
+          <button
+            className="end_button"
+            onClick={() => {
+              navigateUrl("/Result");
+            }}
+          >
+            🔭結果をみる
           </button>
         </section>
       )}

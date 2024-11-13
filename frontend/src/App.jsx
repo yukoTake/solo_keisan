@@ -34,7 +34,7 @@ function App() {
           }}
         >
           🔭結果をみる
-        </button>{" "}
+        </button>
         <button className="btn">過去のテスト(工事中)</button>
       </section>
 

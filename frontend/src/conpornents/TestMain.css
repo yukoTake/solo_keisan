@@ -81,8 +81,10 @@ padding-bottom: 20px;
 
 }
 
-#end_button {
+.end_button {
     font-size: 300%;
+    margin-bottom: 20px;
+    width:500px
 }
 
 /*.k-answer{*/
