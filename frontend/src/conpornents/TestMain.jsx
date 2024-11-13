@@ -48,10 +48,12 @@ export function TestMain({ param }) {
     //   Number(answer) === Number(questions[questionNo - 1].correct),
     // );
     let isCorrect;
+    let correctCon = correctCount;
     if (Number(answer) === Number(questions[questionNo - 1].correct)) {
       setIsRes(true);
       setCorrectCount(correctCount + 1);
       isCorrect = true;
+      correctCon++;
     } else {
       setIsRes(false);
       isCorrect = false;
@@ -79,7 +81,7 @@ export function TestMain({ param }) {
           const apiUrl = "http://localhost:7000/keisan/result_summary";
           axios.patch(apiUrl, {
             summary_id: questions[questionNo - 1].summary_id,
-            correct_count: correctCount,
+            correct_count: correctCon,
             time: Number(time),
           });
         }
