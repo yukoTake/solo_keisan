@@ -1,3 +1,6 @@
+#test_main{
+    width: 700px;
+}
 #question_sec {
     font-size: 700%;
     display: flex;
@@ -5,7 +8,9 @@
     justify-content:space-around;
 
     background-color: beige;
-    width:700px
+    width:700px;
+
+    border-radius: 0.2em;
 }
 
 #q_no {
@@ -23,26 +28,57 @@
 #answer_area{
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
-    gap: 10px;
-
+    justify-content: center;
+    margin-top: 50px;
+    gap: 20px;
+    width:700px;
+    align-items: flex-end;
 
 }
-#answer {
-    width:200px;
-    height: 100px;
-    line-height: 100px;
-    text-align: center;
-    font-size: 300%;
-    background-color: beige;
+
+#answer_display_area{
+    background-color: #fde5e9;
+    border-radius: 1em;
+    width:300px;
+    height: 150px;
 }
 
-#answer_buttons{
+#answer_display {
+
     display: flex;
-gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    /*font-size: 500%;*/
+
 }
+
+#answer{
+    font-size: 500%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.k-answer{*/
+/*    height: 50px;*/
+/*    align-self: flex-end;*/
+/*}*/
+
+/*#answer_buttons{*/
+/*    display: flex;*/
+/*gap: 10px;*/
+/*}*/
 
 #start_button{
-    font-size: 500%;
+    font-size: 800%;
     margin: 100px;
+    width: 600px;
+}
+
+#result{
+    font-size: 300%;
+    display: flex;
+    justify-content: center;
 }

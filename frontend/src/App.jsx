@@ -1,12 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import "./App.css";
 import { useNavigate } from "react-router-dom";
-// import { UserContext } from "./main.jsx";
-
-// export const UserContext = createContext({ id: 1, name: "pochi" });
 
 function App() {
-  // const { user, setUser } = useContext(UserContext);
   const [user, setUser] = useState({ id: 1, name: "pochi" });
   const navigate = useNavigate();
   const navigateUrl = (url) => {
@@ -14,31 +10,36 @@ function App() {
   };
 
   return (
-    <>
-      {/*<UserContext.Provider value={{ user }}>*/}
-      <header>
-        <div className="header_title">計算テスト</div>
+    <body className="root">
+      {/*<UIProvider>*/}
+
+      <header className="header">
+        <div className="header_title">さくさく さんすう</div>
         <div className="option">ようこそ、{user.name}さん</div>
       </header>
-      <section id="top_button">
+      <section id="btn_area">
         <button
+          // className="bd-placeholder-img"    top_button"
+          className="btn"
           onClick={() => {
             navigateUrl("/NewQ");
           }}
         >
-          新しい問題
+          📓新しいテスト{" "}
         </button>
-        <button>過去の問題</button>
         <button
+          className="btn"
           onClick={() => {
             navigateUrl("/Result");
           }}
         >
-          結果を確認
-        </button>
+          🔭結果をみる
+        </button>{" "}
+        <button className="btn">過去のテスト(工事中)</button>
       </section>
-      {/*</UserContext.Provider>*/}
-    </>
+
+      {/*</UIProvider>*/}
+    </body>
   );
 }
 

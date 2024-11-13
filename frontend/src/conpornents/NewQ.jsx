@@ -15,45 +15,67 @@ export function NewQ() {
   console.log(user);
   return (
     <>
-      <header>
-        <div className="header_title">新しい問題にチャレンジしよう</div>
+      <header className="header">
+        <div className="header_title">新しいテストにチャレンジしよう</div>
         <div className="option">
           <a href="/">HOME</a>
           <div>ログイン：{user.name}さん</div>
         </div>
       </header>
-      <section id="radio_area">
-        <div id="radio_title">テストの条件を設定してね！</div>
-        <div id="radio_class">
-          <input
-            type="radio"
-            className="radio"
-            name="class"
-            value="new"
-            checked={paramClass === "new"}
-            onChange={() => {
-              setParamClass("new");
-            }}
-          />
-          新規
-          <input
-            type="radio"
-            className="radio"
-            name="class"
-            value="select"
-            checked={paramClass === "select"}
-            onChange={() => {
-              setParamClass("select");
-            }}
-          />
-          既存
-        </div>
+      <section id="main">
+        <section id="radio_area">
+          <div id="radio_title">テストの条件を決める</div>
+          <div id="radio_class">
+            <button
+              className="param_select"
+              onClick={() => {
+                setParamClass("new");
+              }}
+            >
+              ⭐️ 新しく設定する
+            </button>
+            <button
+              className="param_select"
+              onClick={() => {
+                setParamClass("select");
+              }}
+            >
+              📚 前の設定をつかう
+            </button>
+          </div>
+        </section>
+        {paramClass === "new" ? (
+          <ParamNew user={user} />
+        ) : (
+          <ParamSelect user={user} />
+        )}
       </section>
-      {paramClass === "new" ? (
-        <ParamNew user={user} />
-      ) : (
-        <ParamSelect user={user} />
-      )}
     </>
   );
 }
+
+// <input
+//     type="radio"
+//     className="radio"
+//     name="class"
+//     value="new"
+//     checked={paramClass === "new"}
+//     onChange={() => {
+//         setParamClass("new");
+//     }}
+// />
+// 新しく設定する
+// < input
+// type = "radio"
+// className = "radio"
+// name = "class"
+// value = "select"
+// checked = {paramClass === "select"
+// }
+// onChange = {()
+// =>
+// {
+//     setParamClass("select");
+// }
+// }
+// />

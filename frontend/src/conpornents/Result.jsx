@@ -42,8 +42,8 @@ export function Result() {
   };
 
   return (
-    <>
-      <header>
+    <body className="root">
+      <header className="header">
         <div className="header_title">学習結果を確認しよう</div>
         <div className="option">
           <a href="/">HOME</a>
@@ -129,6 +129,6 @@ export function Result() {
           </tbody>
         </table>
       </section>
-    </>
+    </body>
   );
 }

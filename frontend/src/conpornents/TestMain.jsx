@@ -80,7 +80,7 @@ export function TestMain({ param }) {
   };
 
   return (
-    <>
+    <body id="test_main">
       {isDoTest === "start" && questions.length > 0 ? (
         <>
           <div id={"q_no"}>第{questions[questionNo - 1].question_no}問</div>
@@ -104,20 +104,20 @@ export function TestMain({ param }) {
           </section>
           <section id="answer_area">
             <button
-              style={{ visibility: answer === "" ? "hidden" : "visible" }}
+              // style={{ visibility: answer === "" ? "hidden" : "visible" }}
               onClick={() => {
                 setAnswer("");
               }}
             >
               修正する
             </button>
-
-            <div>こたえ</div>
-            <div id="answer">{answer}</div>
-
+            <div id="answer_display_area">
+              <div>こたえ</div>
+              <div id="answer">{answer}</div>
+            </div>
             <section id="answer_buttons">
               <button
-                style={{ visibility: answer === "" ? "hidden" : "visible" }}
+                // style={{ visibility: answer === "" ? "hidden" : "visible" }}
                 onClick={() => {
                   checkAnswer();
                 }}
@@ -126,8 +126,8 @@ export function TestMain({ param }) {
               </button>
             </section>
           </section>
-
           <section
+            id="result"
             style={{
               visibility: !isResDisplay ? "hidden" : "visible",
             }}
@@ -159,6 +159,6 @@ export function TestMain({ param }) {
           </button>
         </section>
       )}
-    </>
+    </body>
   );
 }

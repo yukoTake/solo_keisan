@@ -1,11 +1,27 @@
 
-#top_button{
+#btn_area {
     display: flex;
-    flex-flow: row;
-    gap:20px;
-    padding: 10px;
 
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+    font-size: 200%;
+
+    height: 300px;
 }
+
+/*.top_btn{*/
+/*display: flex;*/
+/*    flex-flow: column;*/
+/*    justify-content: center;*/
+/*}*/
+/*}*/
+
+/*.k-btn-top{*/
+/*    font-size: 200%;*/
+/*    padding: 10px*/
+/*}*/
 
 
 

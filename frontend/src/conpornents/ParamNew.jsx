@@ -220,14 +220,15 @@ export function ParamNew({ user }) {
           />
         </div>
       </div>
-      <button
-        className="set_button"
-        onClick={() => {
-          redisParameter();
-        }}
-      >
-        設定完了
-      </button>
+      <div className="param_btn_area">
+        <button
+          onClick={() => {
+            redisParameter();
+          }}
+        >
+          設定完了
+        </button>
+      </div>
     </section>
   );
 }

@@ -1,3 +1,104 @@
+root{
+    font-family: 'ヒラギノ丸ゴ ProN','Hannotate SC',sans-serif;
+            /*-apple-system, "Segoe UI", "Helvetica Neue", "Hiragino Kaku Gothic ProN", メイリオ, meiryo, sans-serif;*/
+background-color: #fffff5;
+    /*#fde2d3;*/
+}
+
+
+.header{
+    background-color: #ffd993;
+    height: 100px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    border-radius: 1em;
+
+}
+
+.header_title{
+    font-size: 300%;
+    font-weight: bold;
+    line-height: 1.1;
+
+
+}
+
+/*.k-btn{background-color:#f06c64; }*/
+
+button {
+    display: block;
+    /*margin-left: auto;*/
+    /*margin-top: auto;*/
+    align-content: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    /*width: 80px;*/
+    /*height: 30px;*/
+
+    font-size: 120%;
+    font-weight: bold;
+
+    border-radius: 1em;
+    color: #535252;
+    background-color: #9fdff4;
+    box-shadow: 0 2px 5px rgba(40, 39, 39, 0.7);
+    transition: 0.5s;
+}
+button:hover {
+    background: white;
+    /*border-bottom: 3px solid white;*/
+}
+
+/*button {*/
+
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+
+
+/*    border-radius: 8px;*/
+/*    border: 1px solid transparent;*/
+/*    padding: 0.6em 1.2em;*/
+/*    font-size: 1em;*/
+/*    font-weight: 500;*/
+/*    font-family: inherit;*/
+/*    background-color: #f8c1c1;*/
+/*    cursor: pointer;*/
+/*    transition: border-color 0.25s;*/
+/*}*/
+/*button:hover {*/
+/*    border-color: #646cff;*/
+/*}*/
+/*button:focus,*/
+/*button:focus-visible {*/
+/*    outline: 4px auto -webkit-focus-ring-color;*/
+/*}*/
+
+
+
+
+.option{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    text-align: right;
+    font-size: 140%;
+    padding-right: 15px;
+}
+
+.pull{
+    font-size: 200%;
+    background-color: #ffdfe4;
+    border-radius: 0.2em;
+    box-shadow: 0 2px 5px rgba(40, 39, 39, 0.7);
+}
+
 /*:root {*/
 /*  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;*/
 /*  line-height: 1.5;*/
@@ -35,60 +136,6 @@
 /*    line-height: 1.1;*/
 /*}*/
 
-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #f8c1c1;
-    cursor: pointer;
-    transition: border-color 0.25s;
-}
-button:hover {
-    border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-}
-header{
-    background-color:slategray ;
-    height: 100px;
-    color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 15px;
-
-}
-
-.header_title{
-    font-size: 300%;
-    line-height: 1.1;
-
-}
-
-.option{
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    text-align: right;
-    font-size: 140%;
-    padding-right: 15px;
-}
-
-.pull{
-    font-size: 200%;
-    background-color: lightpink;
-}
 /*@media (prefers-color-scheme: light) {*/
 /*  :root {*/
 /*    color: #213547;*/

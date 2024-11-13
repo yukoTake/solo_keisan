@@ -28,8 +28,8 @@ export function TestNavbar({ param }) {
 
   return (
     <>
-      <header>
-        <div className="header_title">新しい問題にチャレンジしよう</div>
+      <header className="header">
+        <div className="header_title">新しいテストにチャレンジしよう</div>
         <div className="option">
           <a href="/">HOME</a>
           <div>{param.state.user.name}さん</div>
