@@ -15,7 +15,7 @@ export function Test() {
   const [correctCount, setCorrectCount] = useState(0);
   const [time, setTime] = useState(0);
   const param = useLocation();
-  console.log(param);
+  // console.log(param);
   return (
     <QuestionsContext.Provider value={{ questions, setQuestions }}>
       <QuestionNoContext.Provider value={{ questionNo, setQuestionNo }}>

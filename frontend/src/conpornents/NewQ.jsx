@@ -12,7 +12,7 @@ export function NewQ() {
   const user = location.state;
   // const { user } = useContext(UserContext);
   // const [selectedParam, setSelectedParam] = useState({ id: 0 });
-  console.log(user);
+  // console.log(user);
   return (
     <>
       <header className="header">

@@ -19,8 +19,8 @@ export function TestMain({ param }) {
   const [answer, setAnswer] = useState("");
   const [isRes, setIsRes] = useState();
   const [isResDisplay, setIsResDisplay] = useState(false);
-  console.log("Q", questionNo);
-  console.log("Qe", questions);
+  // console.log("Q", questionNo);
+  // console.log("Qe", questions);
   // console.log("@@@", param.state);
   const changeArg = (num) => {
     return Number(parseFloat(num).toString());
@@ -42,12 +42,19 @@ export function TestMain({ param }) {
   };
 
   const checkAnswer = () => {
-    // console.log(Number(answer), questions[questionNo].correct);
+    // console.log(
+    //   Number(answer),
+    //   questions[questionNo - 1].correct,
+    //   Number(answer) === Number(questions[questionNo - 1].correct),
+    // );
+    let isCorrect;
     if (Number(answer) === Number(questions[questionNo - 1].correct)) {
       setIsRes(true);
       setCorrectCount(correctCount + 1);
+      isCorrect = true;
     } else {
       setIsRes(false);
+      isCorrect = false;
     }
     const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
@@ -55,7 +62,7 @@ export function TestMain({ param }) {
         summary_id: questions[questionNo - 1].summary_id,
         question_no: questions[questionNo - 1].question_no,
         answered: Number(answer),
-        isCorrectly: isRes,
+        isCorrectly: isCorrect,
       })
       .then((res) => {
         // console.log(res.data);

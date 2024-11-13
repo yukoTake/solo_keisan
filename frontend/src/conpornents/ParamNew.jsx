@@ -56,7 +56,7 @@ export function ParamNew({ user }) {
         timestamp: new Date(),
       })
       .then((res) => {
-        console.log("res.data〜〜", res.data[0]);
+        // console.log("res.data〜〜", res.data[0]);
         navigateUrl("/Test", res.data[0]);
       });
   };

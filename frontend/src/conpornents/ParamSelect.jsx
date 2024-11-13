@@ -24,7 +24,7 @@ export function ParamSelect({ user }) {
   };
 
   useEffect(() => {
-    console.log("user.id", user.id);
+    // console.log("user.id", user.id);
     let isDo = true;
 
     fetch(`http://localhost:7000/keisan/parameters/user/${user.id}`)
@@ -33,7 +33,7 @@ export function ParamSelect({ user }) {
         if (isDo) {
           setParamList(res);
           const [lastRes] = res.slice(-1);
-          console.log("lastRes", lastRes);
+          // console.log("lastRes", lastRes);
           setSelectedParam(lastRes);
           isDo = false;
         }
