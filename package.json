@@ -14,7 +14,7 @@
     "___db:reset": "npx knex migrate:rollback --all && knex migrate:latest && knex seed:run",
     "build": "npm install && npm run db:migrate && npm run db:seed",
     "db:mi-se": "npm run db:migrate && npm run db:seed",
-    "start": "node ./src/index.js"
+    "start": "node ./index.js"
   },
   "keywords": [],
   "author": "",
