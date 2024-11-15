@@ -151,13 +151,13 @@ export function TestMain({ param }) {
             }}
           >
             {isRes ? (
-              <div>
-                <p>OK! 正解！</p>
+              <div className="end_area">
+                <div className="end_comment">OK! 正解！</div>
                 <img alt="ok" src={OKImage} />
               </div>
             ) : (
-              <div>
-                <p>あたた！まちがい！</p>
+              <div className="end_area">
+                <div className="end_comment">あたた！まちがい！</div>
                 <img alt="ng" src={NGImage} />
               </div>
             )}
