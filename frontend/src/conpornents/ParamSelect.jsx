@@ -26,8 +26,8 @@ export function ParamSelect({ user }) {
   useEffect(() => {
     // console.log("user.id", user.id);
     let isDo = true;
-
-    fetch(`http://localhost:7000/keisan/parameters/user/${user.id}`)
+    // fetch(`http://localhost:7000/keisan/parameters/user/${user.id}`)
+    fetch(`/keisan/parameters/user/${user.id}`)
       .then((res) => res.json())
       .then((res) => {
         if (isDo) {

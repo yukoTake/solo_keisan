@@ -13,7 +13,8 @@ export function Result() {
   const [resList, setResList] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:7000/keisan/result_summary/user/${user.id}`)
+    // fetch(`http://localhost:7000/keisan/result_summary/user/${user.id}`)
+    fetch(`/keisan/result_summary/user/${user.id}`)
       .then((res) => res.json())
       .then((res) => {
         setPullList(res);
@@ -26,7 +27,8 @@ export function Result() {
 
   const getDetail = (id) => {
     const summary_id = id ? id : selectedPull.id;
-    fetch(`http://localhost:7000/keisan/result_detail/${summary_id}`)
+    fetch(`/keisan/result_detail/${summary_id}`)
+      // fetch(`http://localhost:7000/keisan/result_detail/${summary_id}`)
       .then((res) => res.json())
       .then((res) => {
         setResList(res);

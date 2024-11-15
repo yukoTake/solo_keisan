@@ -34,7 +34,8 @@ export function TestMain({ param }) {
     navigate(url, { state: param.state.user });
   };
   const madeQuestion = () => {
-    const apiUrl = "http://localhost:7000/keisan/result_detail";
+    const apiUrl = "/keisan/result_detail";
+    // const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
       .post(apiUrl, {
         user_id: param.state.param.user_id,
@@ -65,7 +66,8 @@ export function TestMain({ param }) {
       setIsRes(false);
       isCorrect = false;
     }
-    const apiUrl = "http://localhost:7000/keisan/result_detail";
+    const apiUrl = "/keisan/result_detail";
+    // const apiUrl = "http://localhost:7000/keisan/result_detail";
     axios
       .patch(apiUrl, {
         summary_id: questions[questionNo - 1].summary_id,
@@ -85,7 +87,8 @@ export function TestMain({ param }) {
           setQuestionNo(questionNo + 1);
           setIsDoTest("end");
 
-          const apiUrl = "http://localhost:7000/keisan/result_summary";
+          const apiUrl = "/keisan/result_summary";
+          // const apiUrl = "http://localhost:7000/keisan/result_summary";
           axios.patch(apiUrl, {
             summary_id: questions[questionNo - 1].summary_id,
             correct_count: correctCon,

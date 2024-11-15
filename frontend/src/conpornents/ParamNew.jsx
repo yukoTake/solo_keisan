@@ -36,8 +36,8 @@ export function ParamNew({ user }) {
 
     const arg1Obj = argChange(arg1Min, arg1Max, arg1List, arg1Class);
     const arg2Obj = argChange(arg2Min, arg2Max, arg2List, arg2Class);
-
-    const apiUrl = "http://localhost:7000/keisan/parameters";
+    // const apiUrl = "http://localhost:7000/keisan/parameters";
+    const apiUrl = "/keisan/parameters";
     axios
       .post(apiUrl, {
         user_id: user.id,
