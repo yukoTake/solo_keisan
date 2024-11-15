@@ -1,6 +1,6 @@
 # けいさんアプリ
 こども向けの計算学習アプリの開発リポジトリです。
-https://solo-keisan.onrender.com/NewQ
+https://solo-keisan.onrender.com
 
 # アプリ概要
 たし算・ひき算・かけ算を学習できます。
