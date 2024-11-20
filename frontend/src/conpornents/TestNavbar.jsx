@@ -38,9 +38,13 @@ export function TestNavbar({ param }) {
       <section id="info">
         {isDoTest !== "wait" ? (
           <div id="middle">
-            <div className="middle_children">
-              のこり {questions.length - questionNo + 1} ︎問
-            </div>
+            {isDoTest === "start" ? (
+              <div className="middle_children">
+                のこり {questions.length - questionNo + 1} ︎問
+              </div>
+            ) : (
+              <div className="middle_children"></div>
+            )}
             <div className="middle_children">
               せいかい {correctCount}／もんだい {questionNo - 1}︎
             </div>

@@ -49,6 +49,7 @@ export function TestMain({ param }) {
         setQuestions(res.data);
         setQuestionNo(1);
         setCorrectCount(0);
+        setIsResDisplay(false);
       });
   };
 
@@ -71,7 +72,7 @@ export function TestMain({ param }) {
     }
     const apiUrl = "/keisan/result_detail";
     // const apiUrl = "http://localhost:7000/keisan/result_detail";
-    axios
+    axiosInstance
       .patch(apiUrl, {
         summary_id: questions[questionNo - 1].summary_id,
         question_no: questions[questionNo - 1].question_no,
@@ -87,12 +88,12 @@ export function TestMain({ param }) {
           setQuestionNo(questionNo + 1);
         } else {
           //テスト終了
-          setQuestionNo(questionNo + 1);
+          // setQuestionNo(questionNo + 1);
           setIsDoTest("end");
 
           const apiUrl = "/keisan/result_summary";
           // const apiUrl = "http://localhost:7000/keisan/result_summary";
-          axios.patch(apiUrl, {
+          axiosInstance.patch(apiUrl, {
             summary_id: questions[questionNo - 1].summary_id,
             correct_count: correctCon,
             time: Number(time),
@@ -103,7 +104,8 @@ export function TestMain({ param }) {
 
   return (
     <body id="test_main">
-      {isDoTest === "start" && questions.length > 0 ? (
+      {isDoTest !== "wait" && questions.length > 0 ? (
+        // {isDoTest === "start" && questions.length > 0 ? (
         <>
           <section id="question_area">
             <div id={"q_no"}>第{questions[questionNo - 1].question_no}問</div>
@@ -126,30 +128,55 @@ export function TestMain({ param }) {
               ))}
             </section>
           </section>
-          <section id="answer_area">
-            <button
-              // style={{ visibility: answer === "" ? "hidden" : "visible" }}
-              onClick={() => {
-                setAnswer("");
-              }}
-            >
-              修正する
-            </button>
-            <div id="answer_display_area">
-              <div>こたえ</div>
-              <div id="answer">{answer}</div>
-            </div>
-            <section id="answer_buttons">
+
+          {isDoTest === "end" ? (
+            <section id="end_area">
+              <div id="end_comment">おしまい！がんばったね！</div>
+              <button
+                className="end_button"
+                onClick={() => {
+                  madeQuestion();
+                  setIsDoTest("start");
+                  setQuestionNo(1);
+                }}
+              >
+                もう一度テストする
+              </button>
+              <button
+                className="end_button"
+                onClick={() => {
+                  navigateUrl("/Result");
+                }}
+              >
+                🔭結果をみる
+              </button>
+            </section>
+          ) : (
+            <section id="answer_area">
               <button
                 // style={{ visibility: answer === "" ? "hidden" : "visible" }}
                 onClick={() => {
-                  checkAnswer();
+                  setAnswer("");
                 }}
               >
-                回答する
+                修正する
               </button>
+              <div id="answer_display_area">
+                <div>こたえ</div>
+                <div id="answer">{answer}</div>
+              </div>
+              <section id="answer_buttons">
+                <button
+                  // style={{ visibility: answer === "" ? "hidden" : "visible" }}
+                  onClick={() => {
+                    checkAnswer();
+                  }}
+                >
+                  回答する
+                </button>
+              </section>
             </section>
-          </section>
+          )}
           <section
             id="result"
             style={{
@@ -163,7 +190,7 @@ export function TestMain({ param }) {
               </div>
             ) : (
               <div className="end_area">
-                <div className="end_comment">あたた！まちがい！</div>
+                <div className="end_comment">あたたっ！まちがいっ！</div>
                 <img alt="ng" src={NGImage} />
               </div>
             )}
@@ -180,27 +207,28 @@ export function TestMain({ param }) {
           START
         </button>
       ) : (
-        <section id="end_area">
-          <div id="end_comment">おしまい！がんばったね！</div>
-          <button
-            className="end_button"
-            onClick={() => {
-              madeQuestion();
-              setIsDoTest("start");
-              setQuestionNo(1);
-            }}
-          >
-            もう一度テストする
-          </button>
-          <button
-            className="end_button"
-            onClick={() => {
-              navigateUrl("/Result");
-            }}
-          >
-            🔭結果をみる
-          </button>
-        </section>
+        ""
+        // <section id="end_area">
+        //   <div id="end_comment">おしまい！がんばったね！</div>
+        //   <button
+        //     className="end_button"
+        //     onClick={() => {
+        //       madeQuestion();
+        //       setIsDoTest("start");
+        //       setQuestionNo(1);
+        //     }}
+        //   >
+        //     もう一度テストする
+        //   </button>
+        //   <button
+        //     className="end_button"
+        //     onClick={() => {
+        //       navigateUrl("/Result");
+        //     }}
+        //   >
+        //     🔭結果をみる
+        //   </button>
+        // </section>
       )}
     </body>
   );
