@@ -8,3 +8,4 @@
 /dataSources.local.xml
 .env
 git rm --cached .env
+/node_modules/

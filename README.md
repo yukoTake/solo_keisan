@@ -12,9 +12,9 @@ https://solo-keisan.onrender.com
 1. npm install
 2. psql postgres
     create database keisan;
-3. npm run db:migrate
-4. npm run start
-5. .envファイルに環境変数入力
+3. .envファイルに環境変数入力
+4. npm run db:migrate
+5. npm run start
 - フロントエンド設定
 1. cd frontend
 2. npm install
