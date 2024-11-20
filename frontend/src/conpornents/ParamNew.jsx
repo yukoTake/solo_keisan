@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import "./ParamNew.css";
 import axios from "axios";
-// import { UserContext } from "../main.jsx";
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.LOCAL_PATH,
+});
 import { useNavigate } from "react-router-dom";
 
 export function ParamNew({ user }) {
@@ -38,7 +40,7 @@ export function ParamNew({ user }) {
     const arg2Obj = argChange(arg2Min, arg2Max, arg2List, arg2Class);
     // const apiUrl = "http://localhost:7000/keisan/parameters";
     const apiUrl = "/keisan/parameters";
-    axios
+    axiosInstance
       .post(apiUrl, {
         user_id: user.id,
         arg1_min: arg1Obj.min,

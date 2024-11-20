@@ -24,8 +24,9 @@ app.get("/keisan/parameters/user/:id", async (req, res) => {
 app.get("/keisan/parameters/:id", async (req, res) => {
   console.log("--index.js--app.get--/parameters--start-");
   const id = req.params.id;
+  console.log("id--", id);
   const resData = await readParameters.find(db, id);
-  // console.log("resData;", resData);
+  console.log("resData--", resData);
   res.status(200).json(resData);
 });
 

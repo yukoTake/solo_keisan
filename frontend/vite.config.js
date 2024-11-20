@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/keisan": {
-        target: "http://localhost:7000",
+        target: "http://localhost:6000",
         changeOrigin: true,
       },
     },

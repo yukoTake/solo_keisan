@@ -53,7 +53,7 @@ console.log("+++kakunin+++++");
 //     console.log("++end++");
 //   });
 
-const apiUrl = `http://localhost:7000/keisan/result_detail/56`;
+const apiUrl = `http://localhost:6000/keisan/result_detail/56`;
 axios.get(apiUrl).then((res) => {
   console.log("kakunin_status:", res.status);
   console.log("kakunin_data:", res.data);

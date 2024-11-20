@@ -11,7 +11,7 @@ describe("起動確認_result_detail_test.mjs", () => {
 
 describe("all", () => {
   it("should return an array of result_detail", async () => {
-    const url = "http://localhost:7000/keisan/result_detail/1";
+    const url = "/keisan/result_detail/1";
     const resData = await axios.get(url);
 
     console.log(resData);

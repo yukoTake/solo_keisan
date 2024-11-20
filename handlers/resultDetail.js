@@ -1,4 +1,7 @@
 const axios = require("axios");
+const axiosInstance = axios.create({
+  baseURL: process.env.LOCAL_PATH,
+});
 const table = "result_detail";
 
 module.exports = {
@@ -15,14 +18,21 @@ module.exports = {
   async new(knex, { user_id, parameter_id }) {
     console.log(`---${table}--new--start-`);
     //パラメータ取得
-    const getUrl = `http://localhost:7000/keisan/parameters/${parameter_id}`; //⭐️あとで修正する
-    let param = await axios.get(getUrl);
+    const getUrl = `/keisan/parameters/${parameter_id}`; //⭐️あとで修正する
+    let param = await axiosInstance.get(getUrl);
     [param] = param.data;
     console.log("=param===", param);
 
     //summery登録
-    const summeryUrl = "http://localhost:7000/keisan/result_summary";
-    let postSummery = await axios.post(summeryUrl, {
+    const summeryUrl = "/keisan/result_summary";
+    // let postSummery = await fetch(summeryUrl, {
+    //   method: "POST",
+    //   body: {
+    //     parameter_id: parameter_id,
+    //     question_count: param.question_count,
+    //   },
+    // });
+    let postSummery = await axiosInstance.post(summeryUrl, {
       parameter_id: parameter_id,
       question_count: param.question_count,
     });

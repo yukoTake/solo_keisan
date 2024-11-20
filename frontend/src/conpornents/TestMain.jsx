@@ -1,5 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.LOCAL_PATH,
+});
 import "./TestMain.css";
 import {
   CorrectCountContext,
@@ -36,7 +39,7 @@ export function TestMain({ param }) {
   const madeQuestion = () => {
     const apiUrl = "/keisan/result_detail";
     // const apiUrl = "http://localhost:7000/keisan/result_detail";
-    axios
+    axiosInstance
       .post(apiUrl, {
         user_id: param.state.param.user_id,
         parameter_id: param.state.param.id,
