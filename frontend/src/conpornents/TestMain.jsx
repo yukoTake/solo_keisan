@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-const axiosInstance = axios.create({
-  baseURL: import.meta.env.LOCAL_PATH,
-});
+// const axiosInstance = axios.create({
+//   baseURL: import.meta.env.LOCAL_PATH,
+// });
 import "./TestMain.css";
 import {
   CorrectCountContext,
@@ -39,7 +39,7 @@ export function TestMain({ param }) {
   const madeQuestion = () => {
     const apiUrl = "/keisan/result_detail";
     // const apiUrl = "http://localhost:7000/keisan/result_detail";
-    axiosInstance
+    axios
       .post(apiUrl, {
         user_id: param.state.param.user_id,
         parameter_id: param.state.param.id,
@@ -72,7 +72,7 @@ export function TestMain({ param }) {
     }
     const apiUrl = "/keisan/result_detail";
     // const apiUrl = "http://localhost:7000/keisan/result_detail";
-    axiosInstance
+    axios
       .patch(apiUrl, {
         summary_id: questions[questionNo - 1].summary_id,
         question_no: questions[questionNo - 1].question_no,
@@ -93,7 +93,7 @@ export function TestMain({ param }) {
 
           const apiUrl = "/keisan/result_summary";
           // const apiUrl = "http://localhost:7000/keisan/result_summary";
-          axiosInstance.patch(apiUrl, {
+          axios.patch(apiUrl, {
             summary_id: questions[questionNo - 1].summary_id,
             correct_count: correctCon,
             time: Number(time),

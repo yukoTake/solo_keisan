@@ -1,11 +1,14 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./ParamNew.css";
 import axios from "axios";
-const axiosInstance = axios.create({
-  baseURL: import.meta.env.LOCAL_PATH,
-});
+// const axiosInstance = axios.create({
+//   baseURL:
+//     import.meta.env.MODE === "development"
+//       ? import.meta.env.LOCAL_PATH
+//       : "https://solo-keisan.onrender.com/",
+// });
 import { useNavigate } from "react-router-dom";
-
+console.log(import.meta.env.LOCAL_PATH);
 export function ParamNew({ user }) {
   // const { user } = useContext(UserContext);
   const [arg1Class, setArg1Class] = useState("num");
@@ -40,7 +43,7 @@ export function ParamNew({ user }) {
     const arg2Obj = argChange(arg2Min, arg2Max, arg2List, arg2Class);
     // const apiUrl = "http://localhost:7000/keisan/parameters";
     const apiUrl = "/keisan/parameters";
-    axiosInstance
+    axios
       .post(apiUrl, {
         user_id: user.id,
         arg1_min: arg1Obj.min,

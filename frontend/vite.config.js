@@ -6,10 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/keisan": {
-        target: "http://localhost:6000",
-        changeOrigin: true,
-      },
+      "/keisan": "http://localhost:6000",
     },
+    // proxy: {
+    //   "/keisan": {
+    //     target: "http://localhost:6000",
+    //     changeOrigin: true,
+    //   },
+    // },
   },
 });
