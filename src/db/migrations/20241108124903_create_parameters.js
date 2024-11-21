@@ -20,7 +20,7 @@ exports.up = async (knex) => {
     table.integer("question_count").notNullable();
     table.timestamp("timestamp").notNullable();
     table.integer("user_id").notNullable();
-    table.foreign("user_id").references("users.id").onDelete("CASCADE");
+    // table.foreign("user_id").references("users.id").onDelete("CASCADE");
   });
 };
 

@@ -15,10 +15,10 @@ exports.up = async (knex) => {
     table.boolean("isCorrectly");
     table.timestamp("timestamp").notNullable();
     table.integer("summary_id").notNullable();
-    table
-      .foreign("summary_id")
-      .references("result_summary.id")
-      .onDelete("CASCADE");
+    // table
+    //   .foreign("summary_id")
+    //   .references("result_summary.id")
+    //   .onDelete("CASCADE");
   });
 };
 
