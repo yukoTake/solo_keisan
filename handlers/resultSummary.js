@@ -40,16 +40,16 @@ module.exports = {
 
   async new(knex, { parameter_id, question_count }) {
     console.log("---resultSummary.js--new--start-");
-    let newId = await knex(table).max("id").first();
-    newId = newId.max + 1;
-    console.log("newId----", newId);
-    console.log("parameter_id----", parameter_id);
+    // let newId = await knex(table).max("id").first();
+    // newId = newId.max + 1;
+    // console.log("newId----", newId);
+    // console.log("parameter_id----", parameter_id);
     return await knex(table)
       .insert({
         parameter_id: parameter_id,
         question_count: question_count,
         timestamp: new Date(),
-        id: newId,
+        // id: newId,
       })
       .returning("*");
   },

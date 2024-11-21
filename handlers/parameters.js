@@ -33,12 +33,12 @@ module.exports = {
     },
   ) {
     console.log(`---${table}--new--start-`);
-    let newId = await knex(table).max("id").first();
-    newId = newId.max + 1;
-    console.log("newId----", newId);
+    // let newId = await knex(table).max("id").first();
+    // newId = newId.max + 1;
+    // console.log("newId----", newId);
     return await knex(table)
       .insert({
-        id: newId,
+        // id: newId,
         user_id: user_id,
         arg1_min: arg1_min,
         arg1_max: arg1_max,
