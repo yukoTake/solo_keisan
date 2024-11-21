@@ -9,7 +9,10 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    // origin: 'https://your-render-app-url.com',
+    origin:
+      process.env.NODE_ENV !== "production"
+        ? "https://solo-keisan.onrender.com"
+        : process.env.LOCAL_PATH,
     methods: ["GET", "POST", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
