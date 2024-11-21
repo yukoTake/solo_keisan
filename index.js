@@ -5,15 +5,14 @@ const readResultSummery = require("./handlers/resultSummary");
 const readResultDetail = require("./handlers/resultDetail");
 const readParameters = require("./handlers/parameters");
 
-console.log("-------", process.env.NODE_ENV);
+const PORT = process.env.PORT;
+console.log("-------", process.env.NODE_ENV, PORT);
+
 const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV !== "production"
-        ? "https://solo-keisan.onrender.com/"
-        : process.env.LOCAL_PATH,
+    origin: `http://localhost:${POORT}`,
     methods: ["GET", "POST", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -114,7 +113,7 @@ app.patch("/keisan/result_detail", async (req, res) => {
 });
 
 //------------------------------------------------------
-const PORT = process.env.PORT;
+
 app.listen(PORT, () => {
   console.log(`Expressサーバー起動中：localhost:${PORT}`);
 });
