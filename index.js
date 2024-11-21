@@ -7,7 +7,13 @@ const readParameters = require("./handlers/parameters");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    // origin: 'https://your-render-app-url.com',
+    methods: ["GET", "POST", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use("/", express.static(__dirname + "/frontend/dist")); //デプロイ用
 
 //users------------------------------------------
