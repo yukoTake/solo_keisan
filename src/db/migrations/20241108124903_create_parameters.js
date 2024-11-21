@@ -6,7 +6,6 @@ const table = "parameters";
 exports.up = async (knex) => {
   await knex.schema.createTable(table, (table) => {
     table.increments("id").primary();
-    table.integer("user_id").references("users.id").onDelete("CASCADE");
     table.integer("arg1_min");
     table.integer("arg1_max");
     table.specificType("arg1_list", "decimal[]");
@@ -20,6 +19,8 @@ exports.up = async (knex) => {
     table.integer("res_max").notNullable();
     table.integer("question_count").notNullable();
     table.timestamp("timestamp").notNullable();
+    table.integer("user_id").notNullable();
+    table.foreign("user_id").references("users.id").onDelete("CASCADE");
   });
 };
 

@@ -8,7 +8,7 @@ exports.seed = async function (knex) {
   await knex(table).del();
   await knex(table).insert([
     {
-      id: 1,
+     
       user_id: 1,
       arg1_min: 0,
       arg1_max: 10,
@@ -25,7 +25,7 @@ exports.seed = async function (knex) {
       timestamp: new Date(),
     },
     {
-      id: 2,
+     
       user_id: 1,
       arg1_min: null,
       arg1_max: null,

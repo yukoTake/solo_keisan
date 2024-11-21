@@ -5,11 +5,6 @@
 const table = "result_detail";
 exports.up = async (knex) => {
   await knex.schema.createTable(table, (table) => {
-    table
-      .integer("summary_id")
-      .references("result_summary.id")
-      .onDelete("CASCADE")
-      .notNullable();
     table.integer("question_no").notNullable();
     table.primary(["summary_id", "question_no"]);
     table.decimal("arg1").notNullable();
@@ -19,6 +14,11 @@ exports.up = async (knex) => {
     table.decimal("answered");
     table.boolean("isCorrectly");
     table.timestamp("timestamp").notNullable();
+    table.integer("summary_id").notNullable();
+    table
+      .foreign("summary_id")
+      .references("result_summary.id")
+      .onDelete("CASCADE");
   });
 };
 
