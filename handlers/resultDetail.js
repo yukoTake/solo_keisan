@@ -1,6 +1,9 @@
 const axios = require("axios");
+const PORT = process.env.PORT;
+console.log("-------resultDetail.js--", process.env.NODE_ENV, PORT);
+
 const axiosInstance = axios.create({
-  baseURL: process.env.LOCAL_PATH,
+  baseURL: `http://localhost:${PORT}`,
 });
 const table = "result_detail";
 
@@ -19,8 +22,8 @@ module.exports = {
     console.log(`---${table}--new--start-`);
     //パラメータ取得
     const getUrl = `/keisan/parameters/${parameter_id}`; //⭐️あとで修正する
-    let param = await axiosInstance.get(getUrl);
-    [param] = param.data;
+    const paramData = await axiosInstance.get(getUrl);
+    const [param] = paramData.data;
     console.log("=param===", param);
 
     //summery登録
@@ -71,13 +74,13 @@ module.exports = {
           param.arg1_min,
           param.arg1_max,
           param.arg1_list,
-          param.arg1_decimal,
+          param.arg1_decimal
         );
         arg2 = getNum(
           param.arg2_min,
           param.arg2_max,
           param.arg2_list,
-          param.arg2_decimal,
+          param.arg2_decimal
         );
         correct = getCorrect(arg1, arg2, param.operator);
         if (param.res_min <= correct && correct <= param.res_max) {

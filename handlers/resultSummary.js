@@ -1,4 +1,4 @@
-const axios = require("axios");
+
 const table = "result_summary";
 
 module.exports = {
