@@ -11,7 +11,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV !== "production"
-        ? "https://solo-keisan.onrender.com"
+        ? "https://solo-keisan.onrender.com/"
         : process.env.LOCAL_PATH,
     methods: ["GET", "POST", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],

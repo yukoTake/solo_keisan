@@ -6,10 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/keisan":
-        process.env.NODE_ENV === "production"
-          ? "https://solo-keisan.onrender.com"
-          : "http://localhost:6000",
+      "/keisan": "http://localhost:6000",
     },
     // proxy: {
     //   "/keisan": {
