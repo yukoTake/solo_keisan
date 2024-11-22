@@ -6,7 +6,7 @@ module.exports = {
   async findUser(knex, user_id) {
     console.log("---resultSummary.js--findUser--start-");
 
-    return await knex
+    return  knex
       .select("T.*")
       .from(`${table} as T`)
       .join("parameters as P", "P.id", "T.parameter_id")
@@ -17,7 +17,7 @@ module.exports = {
   async findSummary(knex, id) {
     console.log("---resultSummary.js--findSummery--start-");
 
-    return await knex
+    return  knex
       .select(
         "T.*",
         "P.user_id",
@@ -44,7 +44,7 @@ module.exports = {
     // newId = newId.max + 1;
     // console.log("newId----", newId);
     // console.log("parameter_id----", parameter_id);
-    return await knex(table)
+    return  knex(table)
       .insert({
         parameter_id: parameter_id,
         question_count: question_count,
@@ -58,7 +58,7 @@ module.exports = {
   async edit(knex, { summary_id, correct_count, time }) {
     console.log(`---${table}--edit--start-`);
 
-    return await knex(table)
+    return  knex(table)
       .update({
         time: time,
         correct_count: correct_count,

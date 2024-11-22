@@ -1,10 +1,10 @@
-const axios = require("axios");
+// const axios = require("axios");
 const PORT = process.env.PORT;
 console.log("-------resultDetail.js--", process.env.NODE_ENV, PORT);
 
-const axiosInstance = axios.create({
-  baseURL: `http://localhost:${PORT}`,
-});
+// const axiosInstance = axios.create({
+//   baseURL: `http://localhost:${PORT}`,
+// });
 const table = "result_detail";
 
 module.exports = {
@@ -22,8 +22,13 @@ module.exports = {
     console.log(`---${table}--new--start-`);
     //パラメータ取得
     const getUrl = `/keisan/parameters/${parameter_id}`; //⭐️あとで修正する
-    const paramData = await axiosInstance.get(getUrl);
-    const [param] = paramData.data;
+    // const paramData = await axiosInstance.get(getUrl);
+    const [param] = await knex
+      .select("*")
+      .from(`parameters`)
+      .where("id", parameter_id);
+
+    // const [param] = paramData;
     console.log("=param===", param);
 
     //summery登録
@@ -35,11 +40,21 @@ module.exports = {
     //     question_count: param.question_count,
     //   },
     // });
-    let postSummery = await axiosInstance.post(summeryUrl, {
-      parameter_id: parameter_id,
-      question_count: param.question_count,
-    });
-    const summeryId = postSummery.data[0].id;
+    // let postSummery = await axiosInstance.post(summeryUrl, {
+    // parameter_id: parameter_id,
+    // question_count: param.question_count,
+    // });
+
+    let postSummery = await knex("result_summary")
+      .insert({
+        parameter_id: parameter_id,
+        question_count: param.question_count,
+        timestamp: new Date(),
+        // id: newId,
+      })
+      .returning("*");
+
+    const summeryId = postSummery[0].id;
     console.log("=summeryId=", summeryId);
 
     const getNum = (min, max, list, decimal) => {

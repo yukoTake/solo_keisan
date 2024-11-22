@@ -2,6 +2,7 @@ import "./TestNavbar.css";
 import { useContext, useEffect } from "react";
 import {
   CorrectCountContext,
+  DisplayQuestionNoContext,
   IsDoTestContext,
   QuestionNoContext,
   QuestionsContext,
@@ -11,6 +12,9 @@ import {
 export function TestNavbar({ param }) {
   const { questions, setQuestions } = useContext(QuestionsContext);
   const { questionNo, setQuestionNo } = useContext(QuestionNoContext);
+  const { displayQuestionNo, setDisplayQuestionNo } = useContext(
+    DisplayQuestionNoContext
+  );
   const { isDoTest, setIsDoTest } = useContext(IsDoTestContext);
   const { correctCount, setCorrectCount } = useContext(CorrectCountContext);
   const { time, setTime } = useContext(TimeContext);
@@ -46,7 +50,7 @@ export function TestNavbar({ param }) {
               <div className="middle_children"></div>
             )}
             <div className="middle_children">
-              せいかい {correctCount}／もんだい {questionNo - 1}︎
+              せいかい {correctCount}／もんだい {displayQuestionNo}︎
             </div>
             <div className="middle_children">じかん：{time} ︎秒</div>
           </div>

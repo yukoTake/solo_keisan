@@ -8,12 +8,15 @@ export const QuestionNoContext = createContext(0);
 export const IsDoTestContext = createContext("wait");
 export const CorrectCountContext = createContext(0);
 export const TimeContext = createContext(0);
+export const DisplayQuestionNoContext = createContext(1);
+
 export function Test() {
   const [questions, setQuestions] = useState([]);
   const [questionNo, setQuestionNo] = useState(0);
   const [isDoTest, setIsDoTest] = useState("wait");
   const [correctCount, setCorrectCount] = useState(0);
   const [time, setTime] = useState(0);
+  const [displayQuestionNo, setDisplayQuestionNo] = useState(1);
   const param = useLocation();
   // console.log(param);
   return (
@@ -24,10 +27,14 @@ export function Test() {
             value={{ correctCount, setCorrectCount }}
           >
             <TimeContext.Provider value={{ time, setTime }}>
-              <>
-                <TestNavbar param={param} />
-                <TestMain param={param} />
-              </>
+              <DisplayQuestionNoContext.Provider
+                value={{ displayQuestionNo, setDisplayQuestionNo }}
+              >
+                <>
+                  <TestNavbar param={param} />
+                  <TestMain param={param} />
+                </>
+              </DisplayQuestionNoContext.Provider>
             </TimeContext.Provider>
           </CorrectCountContext.Provider>
         </IsDoTestContext.Provider>

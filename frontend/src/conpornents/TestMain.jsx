@@ -6,6 +6,7 @@ import axios from "axios";
 import "./TestMain.css";
 import {
   CorrectCountContext,
+  DisplayQuestionNoContext,
   IsDoTestContext,
   QuestionNoContext,
   QuestionsContext,
@@ -19,6 +20,9 @@ export function TestMain({ param }) {
   // const [selectedParam, setSelectedParam] = useContext(ParamContext);
   const { questions, setQuestions } = useContext(QuestionsContext);
   const { questionNo, setQuestionNo } = useContext(QuestionNoContext);
+  const { displayQuestionNo, setDisplayQuestionNo } = useContext(
+    DisplayQuestionNoContext
+  );
   const { isDoTest, setIsDoTest } = useContext(IsDoTestContext);
   const { correctCount, setCorrectCount } = useContext(CorrectCountContext);
   const { time, setTime } = useContext(TimeContext);
@@ -48,6 +52,7 @@ export function TestMain({ param }) {
         // console.log("res.data〜〜", res.data);
         setQuestions(res.data);
         setQuestionNo(1);
+        setDisplayQuestionNo(1);
         setCorrectCount(0);
         setIsResDisplay(false);
       });
@@ -86,9 +91,11 @@ export function TestMain({ param }) {
 
         if (questionNo < questions.length) {
           setQuestionNo(questionNo + 1);
+          setDisplayQuestionNo(displayQuestionNo + 1);
         } else {
           //テスト終了
           // setQuestionNo(questionNo + 1);
+          // setDisplayQuestionNo(displayQuestionNo + 1);
           setIsDoTest("end");
 
           const apiUrl = "/keisan/result_summary";
@@ -154,7 +161,6 @@ export function TestMain({ param }) {
           ) : (
             <section id="answer_area">
               <button
-                // style={{ visibility: answer === "" ? "hidden" : "visible" }}
                 onClick={() => {
                   setAnswer("");
                 }}
@@ -167,7 +173,6 @@ export function TestMain({ param }) {
               </div>
               <section id="answer_buttons">
                 <button
-                  // style={{ visibility: answer === "" ? "hidden" : "visible" }}
                   onClick={() => {
                     checkAnswer();
                   }}
@@ -208,27 +213,6 @@ export function TestMain({ param }) {
         </button>
       ) : (
         ""
-        // <section id="end_area">
-        //   <div id="end_comment">おしまい！がんばったね！</div>
-        //   <button
-        //     className="end_button"
-        //     onClick={() => {
-        //       madeQuestion();
-        //       setIsDoTest("start");
-        //       setQuestionNo(1);
-        //     }}
-        //   >
-        //     もう一度テストする
-        //   </button>
-        //   <button
-        //     className="end_button"
-        //     onClick={() => {
-        //       navigateUrl("/Result");
-        //     }}
-        //   >
-        //     🔭結果をみる
-        //   </button>
-        // </section>
       )}
     </body>
   );

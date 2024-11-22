@@ -36,7 +36,7 @@ module.exports = {
     // let newId = await knex(table).max("id").first();
     // newId = newId.max + 1;
     // console.log("newId----", newId);
-    return await knex(table)
+    return knex(table)
       .insert({
         // id: newId,
         user_id: user_id,
