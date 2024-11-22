@@ -15,11 +15,10 @@ exports.up = async (knex) => {
     table.decimal("answered");
     table.boolean("isCorrectly");
     table.timestamp("timestamp").notNullable();
-
-    // table
-    //   .foreign("summary_id")
-    //   .references("result_summary.id")
-    //   .onDelete("CASCADE");
+    table
+      .foreign("summary_id")
+      .references("result_summary.id")
+      .onDelete("CASCADE");
   });
 };
 

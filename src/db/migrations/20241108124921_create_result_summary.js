@@ -11,10 +11,10 @@ exports.up = async (knex) => {
     table.integer("correct_count");
     table.timestamp("timestamp").notNullable();
     table.integer("parameter_id");
-    // table
-    //   .foreign("parameter_id")
-    //   .references("parameters.id")
-    //   .onDelete("CASCADE");
+    table
+      .foreign("parameter_id")
+      .references("parameters.id")
+      .onDelete("CASCADE");
   });
 };
 
